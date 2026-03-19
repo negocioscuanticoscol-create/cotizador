@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Solicitud de Pedido · Smart Packaging Colombia</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -58,6 +58,11 @@ a{text-decoration:none;color:inherit}
 
 /* PRODUCT CARDS */
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px;margin-bottom:16px}
+@media(max-width:400px){
+  .pgrid{grid-template-columns:1fr}
+  .qinp{width:80px;font-size:16px;padding:8px 10px}
+  .cqrow{gap:6px}
+}
 .pc{background:white;border:1.5px solid var(--bd);border-radius:var(--r);padding:12px 11px;transition:all .18s;position:relative;overflow:hidden}
 .pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:transparent;transition:background .18s}
 .pc.sel{border-color:var(--gm);background:var(--gl)}
@@ -84,7 +89,7 @@ a{text-decoration:none;color:inherit}
 .cdot-b{width:12px;height:12px;border-radius:50%;background:#fff;border:1.5px solid #bbb;flex-shrink:0}
 .clabel{font-size:11px;font-weight:600;color:var(--t2)}
 .cqright{display:flex;align-items:center;gap:5px}
-.qinp{width:68px;background:white;border:1.5px solid var(--bd2);border-radius:8px;color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;padding:5px 8px;outline:none;text-align:center}
+.qinp{width:68px;background:white;border:1.5px solid var(--bd2);border-radius:8px;color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;padding:6px 8px;outline:none;text-align:center;-webkit-appearance:none}
 .qinp:focus{border-color:var(--gm)}
 .qunit{font-size:10px;color:var(--t3)}
 .qwarn{font-size:10px;color:var(--red);margin-top:3px;display:none}
