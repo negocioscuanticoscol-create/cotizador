@@ -1728,9 +1728,32 @@ async function registrarEnSheets(){
     estado: 'PENDIENTE_PAGO'
   };
   try{
-    const url = CONFIG.sheets_webhook + '?data=' + encodeURIComponent(JSON.stringify(payload));
-    await fetch(url, { method:'GET', mode:'no-cors' });
-    console.log('Pedido registrado en Sheets:', o.folio);
+    // Usar iframe oculto con formulario POST para evitar CORS
+    const iframe = document.createElement('iframe');
+    iframe.name = 'sheets_iframe_' + Date.now();
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = CONFIG.sheets_webhook;
+    form.target = iframe.name;
+    form.enctype = 'text/plain';
+
+    // Enviar datos como JSON en un campo
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = JSON.stringify(payload).replace(/=/g,'%3D');
+    input.value = '';
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+
+    setTimeout(()=>{ 
+      document.body.removeChild(form); 
+      document.body.removeChild(iframe); 
+    }, 5000);
+    console.log('Pedido enviado a Sheets:', o.folio);
   }catch(err){
     console.log('Error Sheets:', err);
   }
