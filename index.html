@@ -545,15 +545,15 @@ function genFolio(){
 }
 function calcFlete(uds, pacasCompletas=0){
   // Si hay pacas completas: $75.000 por paca
-  // Para el resto: proporcional con mínimo $38.000
+  // Para el resto: proporcional con mínimo $36.800
   const fletePacas = pacasCompletas * 75000;
   const udsExtra = uds - (pacasCompletas * 200); // uds fuera de pacas completas
-  const fleteExtra = udsExtra > 0 ? Math.max(38000, (udsExtra/200) * 38000) : 0;
-  return fletePacas + (pacasCompletas === 0 ? Math.max(38000, (uds/200)*38000) : fleteExtra);
+  const fleteExtra = udsExtra > 0 ? Math.max(36800, (udsExtra/200) * 36800) : 0;
+  return fletePacas + (pacasCompletas === 0 ? Math.max(36800, (uds/200)*36800) : fleteExtra);
 }
 
 // Versión simple para compatibilidad
-function calcFleteSimple(uds){ return Math.max(38000, (uds/200)*38000); }
+function calcFleteSimple(uds){ return Math.max(36800, (uds/200)*36800); }
 
 // Precio de la lista indicada (0=L1 … 4=L5)
 function getListaPrice(prod, listaIdx){ return prod.t[listaIdx]; }
