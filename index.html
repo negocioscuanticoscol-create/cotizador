@@ -244,7 +244,29 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
-  <div class="slabel" style="margin-top:10px">// Flexipack PP — cierre hermético</div>
+  <div class="slabel" style="margin-top:10px">// Kit de muestras</div>
+  <div style="padding:0 12px;margin-bottom:16px">
+    <div id="card-muestras" class="pc" style="grid-column:1/-1;cursor:pointer;border-color:var(--acc)" onclick="toggleMuestras()">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div class="pvol" style="color:var(--acc)">Kit de Muestras</div>
+          <div class="pline">Muestrario completo · Transporte incluido</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:4px">Incluye una unidad de cada referencia disponible + empaque</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;margin-left:12px">
+          <div style="font-size:22px;font-weight:800;color:var(--acc)">$60.000</div>
+          <div style="font-size:10px;color:var(--t3)">Transporte incluido</div>
+        </div>
+      </div>
+      <div id="muestras-sel" style="display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--bd2)">
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--green);font-weight:600">
+          <span>✓</span><span>Kit de muestras agregado — $60.000 con transporte incluido</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slabel">// Flexipack PP — cierre hermético</div>
   <div class="pgrid" id="grid-fp"></div>
 
   <div class="slabel">// PetMulti PET — transparente</div>
@@ -511,7 +533,7 @@ const allProds = () => [...CAT.fp, ...CAT.pm];
 // Lista usada cuando se tiene código (L3 Mayorista = índice 2)
 const LISTA_CODIGO = 2;
 
-let tipo = 'nat', envioDif = false;
+let tipo = 'nat', envioDif = false, pedidoMuestras = false;
 
 // ─── HELPERS ────────────────────────────────────────────
 function fmt(n){ return '$\u202f'+Math.round(n).toLocaleString('es-CO',{useGrouping:true})+'\u202fCOP'; }
@@ -521,7 +543,17 @@ function genFolio(){
   const n=new Date();
   return 'SP-'+n.getFullYear()+String(n.getMonth()+1).padStart(2,'0')+String(n.getDate()).padStart(2,'0')+'-'+String(n.getHours()).padStart(2,'0')+String(n.getMinutes()).padStart(2,'0');
 }
-function calcFlete(uds){ return Math.ceil(uds/200)*38000; }
+function calcFlete(uds, pacasCompletas=0){
+  // Si hay pacas completas: $75.000 por paca
+  // Para el resto: proporcional con mínimo $38.000
+  const fletePacas = pacasCompletas * 75000;
+  const udsExtra = uds - (pacasCompletas * 200); // uds fuera de pacas completas
+  const fleteExtra = udsExtra > 0 ? Math.max(38000, (udsExtra/200) * 38000) : 0;
+  return fletePacas + (pacasCompletas === 0 ? Math.max(38000, (uds/200)*38000) : fleteExtra);
+}
+
+// Versión simple para compatibilidad
+function calcFleteSimple(uds){ return Math.max(38000, (uds/200)*38000); }
 
 // Precio de la lista indicada (0=L1 … 4=L5)
 function getListaPrice(prod, listaIdx){ return prod.t[listaIdx]; }
@@ -842,15 +874,18 @@ function buildResumen(){
 
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
-  const flete=calcFlete(totalUds);
+  const flete=calcFleteSimple(totalUds);
   const cajas=Math.ceil(totalUds/200);
   const grand=subBase+iva+flete;
 
+  const muestrasVal = pedidoMuestras ? 60000 : 0;
+  const grandConMuestras = subBase+iva+flete+muestrasVal;
+
   document.getElementById('s-sub').textContent=fmt(subBase);
   document.getElementById('s-iva').textContent=fmt(iva);
-  document.getElementById('s-flete').textContent=fmt(flete);
+  document.getElementById('s-flete').textContent=fmt(flete)+(pedidoMuestras?' + Kit muestras '+fmt(muestrasVal):'');
   document.getElementById('s-cajas').textContent=`(${cajas} caja${cajas>1?'s':''})`;
-  document.getElementById('s-total').textContent=fmt(grand);
+  document.getElementById('s-total').textContent=fmt(grandConMuestras);
 
   // Datos cliente
   const envio=getEnvio();
@@ -887,6 +922,7 @@ function buildResumen(){
   msg+=`TOTAL A PAGAR:     ${fmt(grand)}\n\n`;
   if(promoCode) msg+=`Código: ${promoCode}\n`;
   msg+=`Entrega: ${envio.dir}, ${envio.ciudad}\n\n`;
+  if(pedidoMuestras) msg+=`\n▸ Kit de muestras completo: $60.000 (transporte incluido)\n`;
   msg+=`Para confirmar realiza la transferencia y envíanos el comprobante:\n`;
   msg+=`\nBancolombia · Cuenta de Ahorros\n`;
   msg+=`Titular: Martín Guevara Mejía\n`;
@@ -978,7 +1014,7 @@ function generarOrdenInterna(){
 
   const iva=Math.round(subBase*0.19);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
-  const flete=calcFlete(totalUds);
+  const flete=calcFleteSimple(totalUds);
   const grand=subBase+iva+flete;
   const comisionTotal=sel.reduce((a,s)=>a+s.qty*(s.prod.t[LISTA_INTERNA]-s.prod.t[LISTA_BASE]),0);
 
@@ -1186,6 +1222,7 @@ function resetAll(){
   document.getElementById('vtrack').style.display='none';
   document.getElementById('errbanner').style.display='none';
   if(envioDif) toggleEnvioDif();
+  if(pedidoMuestras) toggleMuestras();
   // Reset promo
   if(promoOn){
     promoOn=false; promoOpen=false; listaActiva=2;
@@ -1212,6 +1249,15 @@ function getClientesDB(){
 }
 function saveClientesDB(db){
   try{ localStorage.setItem(DB_KEY, JSON.stringify(db)); }catch(e){}
+}
+
+function toggleMuestras(){
+  pedidoMuestras = !pedidoMuestras;
+  const card = document.getElementById('card-muestras');
+  const sel = document.getElementById('muestras-sel');
+  card.style.borderColor = pedidoMuestras ? 'var(--gm)' : 'var(--acc)';
+  card.style.background = pedidoMuestras ? 'var(--gl)' : '';
+  sel.style.display = pedidoMuestras ? 'block' : 'none';
 }
 
 function limpiarAviso(){
@@ -1291,7 +1337,7 @@ function getOrderData(){
   });
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
-  const flete=calcFlete(totalUds);
+  const flete=calcFleteSimple(totalUds);
   const cajas=Math.ceil(totalUds/200);
   const grand=subBase+iva+flete;
   const comision=Math.round(sel.reduce((a,s)=>a+s.qty*(s.prod.t[listaActiva]-s.prod.t[1]),0));
@@ -1635,7 +1681,7 @@ async function registrarEnSheets(){
     return { ref: group+' '+s.prod.v, color: s.color==='blanco'?'Blanco':'Transparente', qty: s.qty, precioBase: precio, subtotal };
   });
   const iva=Math.round(subBase*IVA);
-  const flete=calcFlete(sel.reduce((a,s)=>a+s.qty,0));
+  const flete=calcFleteSimple(sel.reduce((a,s)=>a+s.qty,0));
   const grand=subBase+iva+flete;
   const comision=Math.round(sel.reduce((a,s)=>a+s.qty*(s.prod.t[listaActiva]-s.prod.t[1]),0));
   const envio=getEnvio();
