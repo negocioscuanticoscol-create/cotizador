@@ -1359,9 +1359,25 @@ function getOrderData(){
   return { items, subBase, iva, flete, cajas, grand, comision, folio, fecha, hora, envio, nombre, tel, totalUds, promoCode };
 }
 
-function abrirVentana(html, titulo){
-  const win=window.open('','_blank','width=1000,height=750');
-  win.document.write(html); win.document.close(); win.focus();
+function abrirVentana(html){
+  // Intentar abrir popup, si está bloqueado descargar como archivo
+  const win = window.open('', '_blank');
+  if(win){
+    win.document.write(html);
+    win.document.close();
+    win.focus();
+  } else {
+    // Popup bloqueado — descargar como HTML
+    const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'documento-SP-' + new Date().toISOString().slice(0,16).replace('T','-') + '.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
 }
 
 function estilosBase(){ return `
