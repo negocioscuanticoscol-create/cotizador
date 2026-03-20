@@ -439,20 +439,10 @@ a{text-decoration:none;color:inherit}
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
       <button class="btn" onclick="generarPackingList()" style="background:#2d4a2d;color:white;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;padding:11px 8px">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM4 5h16v2H4zM9 3h6v2H9z"/></svg>
-        📦 Packing list
-      </button>
-      <button class="btn" onclick="generarOrdenDespacho()" style="background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;padding:11px 8px">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/></svg>
-        🚚 Despacho
+        📦 Bodega · Despacho
       </button>
       <button class="btn" onclick="generarComprobanteContabilidad()" style="background:#5B21B6;color:white;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;padding:11px 8px">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
         💰 Contabilidad
-      </button>
-      <button class="btn" onclick="generarPreFactura()" style="background:#CC5500;color:white;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;padding:11px 8px">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 17v-1h8v1H8zm0-3v-1h8v1H8zm0-3V10h4v1H8z"/></svg>
-        🧾 Pre-factura
       </button>
     </div>
 
@@ -743,6 +733,13 @@ function goStep2(){
   const sel=getSel();
   const err=document.getElementById('errbanner');
 
+  // Si solo pide kit de muestras, dejar pasar
+  if(pedidoMuestras && sel.length===0){
+    err.style.display='none';
+    goStep(2);
+    return;
+  }
+
   // Detectar referencias con cantidad entre 1 y 99 o que superan stock
   const incompletas=[];
   allProds().forEach(p=>p.col.forEach(color=>{
@@ -765,9 +762,9 @@ function goStep2(){
       '<br><small style="opacity:.8">Ajusta las cantidades o déjalas en 0 para omitirlas.</small>';
     return;
   }
-  if(!sel.length){
+  if(!sel.length && !pedidoMuestras){
     err.style.display='block';
-    err.textContent='Agrega al menos un producto con mínimo 100 unidades para continuar.';
+    err.textContent='Agrega al menos un producto con mínimo 100 unidades o selecciona el kit de muestras para continuar.';
     return;
   }
   err.style.display='none';
@@ -857,7 +854,7 @@ function buildResumen(){
   let subBase=0;
 
   // Productos con precios según lista activa
-  document.getElementById('sum-items').innerHTML=sel.map(s=>{
+  let itemsHTML = sel.map(s=>{
     const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP';
     const clabel=s.color==='blanco'?'Blanco':'Transparente';
     const precio=s.prod.t[listaActiva];
@@ -872,9 +869,19 @@ function buildResumen(){
     </div>`;
   }).join('');
 
+  if(pedidoMuestras){
+    itemsHTML += `<div class="srow">
+      <div class="srl">Kit de Muestras
+        <small>Muestrario completo · Transporte incluido</small>
+      </div>
+      <div class="srr" style="color:var(--acc)">$\u202f60.000\u202fCOP</div>
+    </div>`;
+  }
+  document.getElementById('sum-items').innerHTML = itemsHTML || '<div class="srow"><div class="srl" style="color:var(--t3)">Solo kit de muestras</div></div>';
+
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
-  const flete=calcFleteSimple(totalUds);
+  const flete=pedidoMuestras && totalUds===0 ? 0 : calcFleteSimple(totalUds);
   const cajas=Math.ceil(totalUds/200);
   const grand=subBase+iva+flete;
 
