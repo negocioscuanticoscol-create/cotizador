@@ -1459,6 +1459,16 @@ function generarPackingList(){
       <td style="text-align:center"><input type="checkbox" style="width:20px;height:20px;accent-color:#2d9e5f"></td>
     </tr>`).join('');
 
+  // Construir mensaje WA para bodega
+  let msgBodega=`📦 PACKING LIST · ${o.folio}\n`;
+  msgBodega+=`━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  msgBodega+=`Cliente: ${o.nombre} · ${o.tel}\n`;
+  msgBodega+=`Entrega: ${o.envio.dir}, ${o.envio.ciudad}\n\n`;
+  o.items.forEach(s=>{ msgBodega+=`▸ ${s.group} ${s.nombre} (${s.color}): ${fmtN(s.qty)} uds\n`; });
+  msgBodega+=`\nTotal: ${fmtN(o.totalUds)} uds · ${o.cajas} caja${o.cajas>1?'s':''}\n`;
+  msgBodega+=`Total a cobrar: ${fmt(o.grand)}\n`;
+  msgBodega+=`Verificar pago antes de preparar. Folio: ${o.folio}`;
+
   const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Packing ${o.folio}</title>
   <style>${estilosBase()}</style></head><body>
   ${headerDoc('📦 PACKING LIST · PREPARAR Y EMPACAR', '#2d4a2d', o.folio, o.fecha, o.hora)}
@@ -1489,16 +1499,6 @@ function generarPackingList(){
     </a>
   </div>
   </body></html>`;
-
-  // Construir mensaje WA para bodega
-  let msgBodega=`📦 PACKING LIST · ${o.folio}\n`;
-  msgBodega+=`━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-  msgBodega+=`Cliente: ${o.nombre} · ${o.tel}\n`;
-  msgBodega+=`Entrega: ${o.envio.dir}, ${o.envio.ciudad}\n\n`;
-  o.items.forEach(s=>{ msgBodega+=`▸ ${s.group} ${s.nombre} (${s.color}): ${fmtN(s.qty)} uds\n`; });
-  msgBodega+=`\nTotal: ${fmtN(o.totalUds)} uds · ${o.cajas} caja${o.cajas>1?'s':''}\n`;
-  msgBodega+=`Total a cobrar: ${fmt(o.grand)}\n`;
-  msgBodega+=`Verificar pago antes de preparar. Folio: ${o.folio}`;
 
   abrirVentana(html);
 }
@@ -1556,6 +1556,18 @@ function generarComprobanteContabilidad(){
       <td style="text-align:right;color:#1a7a4a;font-weight:700;font-family:monospace">${fmt(s.qty*(s.precio-s.precioL2))}</td>
     </tr>`).join('');
 
+  // Mensaje WA contabilidad
+  let msgContabilidad=`💰 COMPROBANTE · ${o.folio}\n`;
+  msgContabilidad+=`━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  msgContabilidad+=`Cliente: ${o.nombre}\n`;
+  o.items.forEach(s=>{ msgContabilidad+=`▸ ${s.group} ${s.nombre} (${s.color}): ${fmtN(s.qty)} uds\n`; });
+  msgContabilidad+=`\nSubtotal s/IVA: ${fmt(o.subBase)}\n`;
+  msgContabilidad+=`IVA 19%: ${fmt(o.iva)}\n`;
+  msgContabilidad+=`Flete: ${fmt(o.flete)}\n`;
+  msgContabilidad+=`TOTAL: ${fmt(o.grand)}\n`;
+  msgContabilidad+=`Mi comisión: ${fmt(o.comision)}\n`;
+  msgContabilidad+=`\nAdjuntar foto del comprobante de pago.`;
+
   const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Contabilidad ${o.folio}</title>
   <style>${estilosBase()}</style></head><body>
   ${headerDoc('💰 COMPROBANTE INTERNO · CONTABILIDAD', '#5B21B6', o.folio, o.fecha, o.hora)}
@@ -1593,18 +1605,6 @@ function generarComprobanteContabilidad(){
     </a>
   </div>
   </body></html>`;
-
-  // Mensaje WA contabilidad
-  let msgContabilidad=`💰 COMPROBANTE · ${o.folio}\n`;
-  msgContabilidad+=`━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-  msgContabilidad+=`Cliente: ${o.nombre}\n`;
-  o.items.forEach(s=>{ msgContabilidad+=`▸ ${s.group} ${s.nombre} (${s.color}): ${fmtN(s.qty)} uds\n`; });
-  msgContabilidad+=`\nSubtotal s/IVA: ${fmt(o.subBase)}\n`;
-  msgContabilidad+=`IVA 19%: ${fmt(o.iva)}\n`;
-  msgContabilidad+=`Flete: ${fmt(o.flete)}\n`;
-  msgContabilidad+=`TOTAL: ${fmt(o.grand)}\n`;
-  msgContabilidad+=`Mi comisión: ${fmt(o.comision)}\n`;
-  msgContabilidad+=`\nAdjuntar foto del comprobante de pago.`;
 
   abrirVentana(html);
 }
