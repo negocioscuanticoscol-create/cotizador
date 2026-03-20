@@ -1728,32 +1728,31 @@ async function registrarEnSheets(){
     estado: 'PENDIENTE_PAGO'
   };
   try{
-    // Usar iframe oculto con formulario POST para evitar CORS
-    const iframe = document.createElement('iframe');
-    iframe.name = 'sheets_iframe_' + Date.now();
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = CONFIG.sheets_webhook;
-    form.target = iframe.name;
-    form.enctype = 'text/plain';
-
-    // Enviar datos como JSON en un campo
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = JSON.stringify(payload).replace(/=/g,'%3D');
-    input.value = '';
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-
-    setTimeout(()=>{ 
-      document.body.removeChild(form); 
-      document.body.removeChild(iframe); 
-    }, 5000);
-    console.log('Pedido enviado a Sheets:', o.folio);
+    // Parámetros separados para evitar URLs muy largas
+    const params = new URLSearchParams({
+      folio: payload.folio,
+      fecha: payload.fecha,
+      hora: payload.hora,
+      nombre: payload.nombre,
+      celular: payload.celular,
+      cedula_nit: payload.cedula_nit,
+      tipo_cliente: payload.tipo_cliente,
+      envio_dir: payload.envio_dir,
+      envio_ciudad: payload.envio_ciudad,
+      envio_diferente: payload.envio_diferente,
+      alimento: payload.alimento || '',
+      notas: payload.notas || '',
+      productos: payload.productos,
+      total_uds: payload.total_uds,
+      total_facturado: payload.total_facturado,
+      comision_jose: payload.comision_jose,
+      lista_idx: payload.lista_idx,
+      promo_code: payload.promo_code || '',
+      kit_muestras: pedidoMuestras ? 'SI' : 'NO'
+    });
+    const img = new Image();
+    img.src = CONFIG.sheets_webhook + '?' + params.toString();
+    console.log('Pedido enviado a Sheets:', payload.folio);
   }catch(err){
     console.log('Error Sheets:', err);
   }
