@@ -1706,7 +1706,7 @@ async function registrarEnSheets(){
   const iva=Math.round(subBase*IVA);
   const flete=calcFleteSimple(sel.reduce((a,s)=>a+s.qty,0));
   const grand=subBase+iva+flete;
-  const comision=Math.round(sel.reduce((a,s)=>a+s.qty*(s.prod.t[listaActiva]-s.prod.t[1]),0));
+  const comision=Math.round(sel.reduce((a,s)=>a+s.qty*(s.prod.t[listaActiva]-s.prod.t[4]),0));
   const envio=getEnvio();
   const nombre=getNombre();
   const payload={
