@@ -19,7 +19,7 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--t);font-family:'Outfit',sans-serif;font-size:15px;min-height:100vh;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
-
+ 
 .hdr{background:var(--dark);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{display:flex;align-items:center;gap:10px}
 .lmark{width:36px;height:36px;background:var(--gm);border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -28,7 +28,7 @@ a{text-decoration:none;color:inherit}
 .lsub{font-size:10px;color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace}
 .hwa{background:var(--gm);color:white;font-size:12px;font-weight:600;padding:7px 14px;border-radius:20px;display:flex;align-items:center;gap:6px}
 .hwa svg{width:14px;height:14px;fill:white}
-
+ 
 .hero{background:var(--dark);padding:28px 20px 36px;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:30px;background:var(--bg);border-radius:30px 30px 0 0}
 .htag{display:inline-block;background:rgba(45,158,95,.2);color:#6ee9a0;font-size:10px;font-weight:600;padding:4px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;margin-bottom:12px}
@@ -38,7 +38,7 @@ a{text-decoration:none;color:inherit}
 .hbadges{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
 .hbadge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:11px;padding:5px 10px;border-radius:20px}
 #inv-status{margin-top:8px;font-size:10px;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace}
-
+ 
 /* ── AVISO TRAZABILIDAD ── */
 .aviso-trazabilidad{
   margin:14px 12px 4px;
@@ -61,7 +61,7 @@ a{text-decoration:none;color:inherit}
 }
 .aviso-trazabilidad-texto{font-size:13px;color:rgba(255,255,255,.85);line-height:1.65;font-weight:500}
 .aviso-trazabilidad-texto strong{color:#6ee9a0;font-weight:700}
-
+ 
 .steps{display:flex;background:white;border-bottom:1px solid var(--bd);overflow-x:auto;scrollbar-width:none}
 .steps::-webkit-scrollbar{display:none}
 .step{flex:1;min-width:80px;padding:13px 8px 11px;text-align:center;font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.08em;font-family:'JetBrains Mono',monospace;border-right:1px solid var(--bd);position:relative;transition:all .2s}
@@ -71,12 +71,12 @@ a{text-decoration:none;color:inherit}
 .step.done{color:var(--t2)}
 .snum{display:block;font-size:16px;font-weight:800;margin-bottom:3px;line-height:1;font-family:'Outfit',sans-serif}
 .step.active .snum{color:var(--green)}
-
+ 
 .panel{display:none;animation:fadeUp .2s ease}.panel.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
+ 
 .slabel{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;padding:18px 20px 10px}
-
+ 
 /* ── IBOX MEJORADO ── */
 .ibox{margin:14px 12px 0;background:var(--al);border:1px solid rgba(240,165,0,.3);border-radius:var(--r);padding:12px 14px;font-size:12px;color:#7a5800;line-height:1.6}
 .ibox strong{color:#5a4000}
@@ -93,7 +93,7 @@ a{text-decoration:none;color:inherit}
   border-radius:8px;padding:5px 10px;font-size:13px;font-weight:700;color:var(--red);
   margin-top:3px;line-height:1.3;
 }
-
+ 
 /* PROMO */
 .promo{margin:10px 12px 0;background:white;border:1.5px solid var(--bd);border-radius:var(--r);overflow:hidden;transition:border-color .2s}
 .promo.unlocked{border-color:var(--gm)}
@@ -113,7 +113,7 @@ a{text-decoration:none;color:inherit}
 .pmsg{font-size:12px;margin-top:7px;padding:7px 11px;border-radius:8px;display:none}
 .pmsg.ok{background:var(--gl);color:var(--green);display:block}
 .pmsg.fail{background:var(--rl);color:var(--red);display:block}
-
+ 
 /* PRODUCTS */
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px;margin-bottom:16px}
 @media(max-width:400px){.pgrid{grid-template-columns:1fr}}
@@ -126,12 +126,12 @@ a{text-decoration:none;color:inherit}
 .pdims{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);margin-bottom:5px}
 .ppaca{font-size:11px;color:var(--green);font-weight:700;margin-bottom:2px}
 .pmin{font-size:10px;color:var(--red);font-weight:700}
-
+ 
 .sbadge{display:inline-flex;align-items:center;font-size:9px;font-weight:600;padding:2px 6px;border-radius:8px;margin-top:3px}
 .s-ok{background:var(--gl);color:var(--green)}
 .s-out{background:var(--rl);color:var(--red)}
 .s-load{background:var(--bg);color:var(--t3);border:0.5px solid var(--bd)}
-
+ 
 .cqblock{margin-top:10px;padding-top:9px;border-top:1px dashed var(--bd2)}
 .cqblock-title{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
 .cqrow{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:0.5px dashed var(--bd)}
@@ -146,7 +146,7 @@ a{text-decoration:none;color:inherit}
 .qunit{font-size:10px;color:var(--t3)}
 .qwarn{font-size:10px;color:var(--red);margin-top:3px;display:none}
 .qtotline{font-size:10px;font-family:'JetBrains Mono',monospace;margin-top:5px;text-align:right;color:var(--t2)}
-
+ 
 /* KIT MUESTRAS */
 .kit-muestras-card{
   margin:0 12px 16px;
@@ -160,7 +160,7 @@ a{text-decoration:none;color:inherit}
 .km-badge{background:var(--acc);color:white;font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px}
 .km-desc{font-size:12px;color:var(--t2);margin-top:5px;line-height:1.5}
 .km-sel{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--bd2);font-size:12px;color:var(--green);font-weight:600}
-
+ 
 /* FORM */
 .fwrap{padding:0 12px 14px}
 .field{margin-bottom:12px}
@@ -179,7 +179,7 @@ a{text-decoration:none;color:inherit}
 .tipo-card.tsel .ttitle{color:var(--green)}
 .tipo-card .tsub{font-size:10px;color:var(--t3);margin-top:2px}
 .fbox{background:var(--gl);border:1px solid rgba(45,158,95,.25);border-radius:var(--r);padding:11px 14px;margin-bottom:13px;font-size:12px;color:var(--green);line-height:1.6}
-
+ 
 /* toggle envio */
 .toggle-envio{margin:10px 0 4px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color .15s}
 .toggle-envio.active{border-color:var(--gm);background:var(--gl)}
@@ -192,7 +192,7 @@ a{text-decoration:none;color:inherit}
 .toggle-envio.active .te-sw::after{transform:translateX(16px)}
 .envio-box{display:none;background:white;border:1.5px solid var(--gm);border-radius:var(--r);padding:13px 14px;margin-bottom:4px}
 .envio-box-title{font-size:11px;font-weight:600;color:var(--green);font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
-
+ 
 /* RESUMEN */
 .swrap{padding:14px 12px}
 .scard{background:white;border:1px solid var(--bd);border-radius:var(--rl2);overflow:hidden;margin-bottom:12px}
@@ -204,7 +204,7 @@ a{text-decoration:none;color:inherit}
 .srl small{display:block;font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;margin-top:1px}
 .srr{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--dark);text-align:right}
 .snote{font-size:11px;color:var(--t3);line-height:1.6;margin-bottom:14px}
-
+ 
 .btn{display:block;width:100%;padding:13px 20px;border-radius:var(--r);font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;cursor:pointer;border:none;transition:all .18s;text-align:center;letter-spacing:.02em}
 .btn-p{background:var(--gm);color:white}
 .btn-p:hover{background:#1f8a4e}
@@ -214,17 +214,17 @@ a{text-decoration:none;color:inherit}
 .btn-s:hover{border-color:var(--t2);color:var(--dark)}
 .bwrap{padding:0 12px 24px}
 #errbanner{display:none;margin:0 12px 12px;background:var(--rl);border:1px solid rgba(214,48,49,.3);border-radius:var(--r);padding:9px 13px;font-size:12px;color:var(--red)}
-
+ 
 .confirmado-box{background:var(--gl);border:2px solid var(--gm);border-radius:var(--rl2);padding:20px 18px;margin-bottom:16px;text-align:center}
 .confirmado-icon{font-size:40px;margin-bottom:8px}
 .confirmado-title{font-size:18px;font-weight:800;color:var(--green);margin-bottom:6px}
 .confirmado-sub{font-size:13px;color:var(--t2);line-height:1.6}
-
+ 
 .footer{padding:18px 20px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:.08em;border-top:1px solid var(--bd)}
 .sheets-sending{display:none;text-align:center;padding:8px;font-size:12px;color:var(--t3)}
 label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;color:var(--green)!important}
 .sheets-ok{display:none;font-size:11px;color:var(--green);text-align:center;margin-top:4px}
-
+ 
 /* aviso cliente regresa */
 .aviso-cliente{display:none;background:var(--gl);border:1px solid rgba(45,158,95,.25);border-radius:var(--r);padding:10px 13px;margin-bottom:10px;align-items:center;gap:10px}
 .aviso-cliente-ico{font-size:20px}
@@ -233,7 +233,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
 </style>
 </head>
 <body>
-
+ 
 <div class="hdr">
   <div class="logo">
     <div class="lmark">
@@ -246,7 +246,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
     Hablar
   </a>
 </div>
-
+ 
 <div class="hero">
   <div class="htag">// COTIZADOR OFICIAL 2026 · v8</div>
   <h1>Cotiza tus<br><em>envases Flexipack</em></h1>
@@ -258,16 +258,16 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
   </div>
   <div id="inv-status">Verificando disponibilidad...</div>
 </div>
-
+ 
 <div class="steps">
   <div class="step active" id="st1"><span class="snum">1</span>Productos</div>
   <div class="step" id="st2"><span class="snum">2</span>Datos</div>
   <div class="step" id="st3"><span class="snum">3</span>Cotización</div>
 </div>
-
+ 
 <!-- ═══ PASO 1 ═══ -->
 <div class="panel active" id="p1">
-
+ 
   <!-- AVISO TRAZABILIDAD GRANDE -->
   <div class="aviso-trazabilidad">
     <span class="aviso-trazabilidad-icon">🛡️</span>
@@ -277,13 +277,13 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
       Esto asegura que sus envases lleguen en condiciones óptimas de higiene y con trazabilidad completa desde fábrica.
     </div>
   </div>
-
+ 
   <div class="ibox" style="margin-top:12px">
     <strong>Precios incluyen IVA (19%).</strong>
     <span class="aviso-min">📦 Pedido mínimo: 100 unidades por color</span><br>
     Tus compras se acumulan para precio mayorista. Cada caja ~200 uds · flete $36.800 por caja.
   </div>
-
+ 
   <div class="promo" id="promobox">
     <div class="promo-hdr" onclick="togglePromo()">
       <div class="picon" id="picon">🎁</div>
@@ -297,7 +297,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
       <div class="pmsg" id="pmsg"></div>
     </div>
   </div>
-
+ 
   <!-- KIT DE MUESTRAS -->
   <div class="slabel" style="margin-top:14px">// Kit especial</div>
   <div class="kit-muestras-card" id="card-muestras" onclick="toggleMuestras()">
@@ -308,24 +308,24 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
     <div class="km-desc">Muestrario completo de referencias Flexipack y PetMulti. Transporte incluido a todo Colombia. Ideal para conocer el producto antes de tu primer pedido.</div>
     <div class="km-sel" id="muestras-sel">✓ Kit de muestras agregado a tu pedido</div>
   </div>
-
+ 
   <div class="slabel">// Flexipack — PP hermético</div>
   <div class="pgrid" id="grid-fp"></div>
-
+ 
   <div class="slabel">// PetMulti — PET transparente</div>
   <div class="pgrid" id="grid-pm"></div>
-
+ 
   <div id="errbanner">Selecciona al menos un producto con mínimo 100 unidades, o el kit de muestras.</div>
   <div class="bwrap" style="padding-top:4px">
     <button class="btn btn-p" onclick="goStep2()">Continuar con mis datos →</button>
   </div>
 </div>
-
+ 
 <!-- ═══ PASO 2 ═══ -->
 <div class="panel" id="p2">
   <div class="fwrap" style="padding-top:14px">
     <div class="fbox"><strong>Envío a toda Colombia</strong> — una vez verificado el pago despachamos de inmediato. Tu pedido llega en 2-3 días hábiles. Flete incluido en la factura.</div>
-
+ 
     <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px">Tipo de cliente *</div>
     <div class="tipo-grid">
       <div class="tipo-card tsel" id="tc-nat" onclick="setTipo('nat')">
@@ -339,13 +339,13 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
         <div class="tsub">Empresa con NIT / RUT</div>
       </div>
     </div>
-
+ 
     <!-- AVISO cliente regresante -->
     <div class="aviso-cliente" id="aviso-cliente">
       <div class="aviso-cliente-ico">👋</div>
       <div class="aviso-cliente-txt"><strong id="aviso-nombre"></strong><br><span id="aviso-sub"></span></div>
     </div>
-
+ 
     <!-- ── PERSONA NATURAL ── -->
     <div id="form-nat">
       <!-- ID con búsqueda -->
@@ -399,7 +399,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
         <div class="errmsg">Requerido</div>
       </div>
     </div>
-
+ 
     <!-- ── PERSONA JURÍDICA ── -->
     <div id="form-jur" style="display:none">
       <div id="bloque-id-jur">
@@ -452,12 +452,12 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
         <input type="email" id="emlj" placeholder="correo@empresa.com">
       </div>
     </div>
-
+ 
     <div style="background:var(--gl);border:1px solid rgba(45,158,95,.25);border-radius:var(--r);padding:10px 14px;margin:4px 0 10px;font-size:12px;color:var(--green);display:flex;align-items:center;gap:8px">
       <span style="font-size:16px">📦</span>
       <span><strong>Entrega en la misma dirección de facturación</strong> — si necesitas enviar a otro lugar actívalo abajo.</span>
     </div>
-
+ 
     <div class="toggle-envio" id="toggle-envio" onclick="toggleEnvioDif()">
       <div>
         <div class="te-label">Enviar a dirección diferente</div>
@@ -476,7 +476,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
       </div>
       <div class="field" id="f-env-dep"><label>Departamento *</label><input type="text" id="env-dep" placeholder="Departamento"><div class="errmsg">Requerido</div></div>
     </div>
-
+ 
     <div class="field" style="margin-top:8px">
       <label>¿Qué vas a envasar?</label>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 6px">
@@ -499,7 +499,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
     <button class="btn btn-s" onclick="goStep(1)">← Volver a productos</button>
   </div>
 </div>
-
+ 
 <!-- ═══ PASO 3 ═══ -->
 <div class="panel" id="p3">
   <div class="swrap">
@@ -519,14 +519,14 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
         <span style="font-size:22px;font-weight:800;color:var(--green);font-family:'JetBrains Mono',monospace" id="s-total">$0</span>
       </div>
     </div>
-
+ 
     <div class="scard">
       <div class="shdr"><span>Datos de entrega</span></div>
       <div id="sum-cliente"></div>
     </div>
-
+ 
     <p class="snote">Precios sin IVA en lista. IVA 19% y flete incluidos en el total. Cotización válida 5 días hábiles.</p>
-
+ 
     <div id="acuerdo-section">
       <button class="btn btn-acuerdo" onclick="confirmarAcuerdo()" id="btn-acuerdo">
         ✅ Estoy de acuerdo con la liquidación
@@ -534,20 +534,20 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
       <div class="sheets-sending" id="sheets-sending">⏳ Registrando tu pedido...</div>
       <div class="sheets-ok" id="sheets-ok">✓ Pedido registrado correctamente</div>
     </div>
-
+ 
     <div class="confirmado-box" id="confirmado-box" style="display:none">
       <div class="confirmado-icon">🎉</div>
       <div class="confirmado-title">¡Gracias, tu pedido está confirmado!</div>
       <div class="confirmado-sub">Estamos recibiendo tu acuerdo. En breve te contactamos por WhatsApp con las formas de pago.</div>
     </div>
-
+ 
     <button class="btn btn-s" onclick="goStep(2)" style="margin-top:8px">← Editar datos</button>
     <button class="btn btn-s" onclick="resetAll()" style="margin-top:8px">Nueva cotización</button>
   </div>
 </div>
-
+ 
 <div class="footer">SMART PACKAGING COLOMBIA · 3124124034 · @smartpackagingcol</div>
-
+ 
 <script>
 // ═══════════════════════════════════════════════════════
 // CONFIGURACIÓN CENTRAL
@@ -560,17 +560,17 @@ const CONFIG = {
   sheets_webhook: 'https://script.google.com/macros/s/AKfycbwe5CV37LNtQT0ayrYMcLMKj7smoPN64gxuDmu2VtPs3GGP9yivhMIn6S8WZuRroYP_/exec',
   sheet_inventario:'https://script.google.com/macros/s/AKfycbwe5CV37LNtQT0ayrYMcLMKj7smoPN64gxuDmu2VtPs3GGP9yivhMIn6S8WZuRroYP_/exec?action=inventario',
 };
-
+ 
 const WA = CONFIG.wa_ventas;
-
+ 
 const PROMOS = {
   'MAYORISTA2026':   { lista: 2, msg: 'Código válido — precio mayorista desbloqueado ✓' },
   'DISTRIBUIDOR2026':{ lista: 3, msg: 'Código válido — precio distribuidor desbloqueado ✓' },
   'CONVENIO2026':    { lista: 4, msg: 'Código válido — precio convenio desbloqueado ✓' }
 };
-
+ 
 let promoOn = false, promoOpen = false, listaActiva = 1; // 1 = L2 Pyme por defecto
-
+ 
 // ─── CATÁLOGO ────────────────────────────────────────────
 // t = [L1 Muestras, L2 Pyme, L3 Mayorista, L4 Distribuidor, L5 Convenio]
 // Kit de Muestras: precio fijo $60.000
@@ -591,18 +591,18 @@ const CAT = {
     {id:'pm1000', v:'1.000 ml PET', d:'Ø66.5×248', pk:1008, col:['transparente'],       t:[1641,1515,1406,1313,1231]}
   ]
 };
-
+ 
 // Comisión Kit Muestras: se calcula como diferencia entre L1 y L2
 const KIT_PRECIO = 60000;
 const KIT_L2     = 60000; // precio convenio del kit
 const KIT_COMISION = 8000; // comisión fija por kit de muestras
-
+ 
 const LISTA_NAMES = ['L1 Muestras','L2 Pyme','L3 Mayorista','L4 Distribuidor','L5 Convenio'];
 const allProds = () => [...CAT.fp, ...CAT.pm];
-
+ 
 let tipo = 'nat', envioDif = false, pedidoMuestras = false;
 let inventory = {};
-
+ 
 // ─── HELPERS ────────────────────────────────────────────
 function fmt(n){ return '$\u202f'+Math.round(n).toLocaleString('es-CO',{useGrouping:true})+'\u202fCOP'; }
 function fmtN(n){ return Math.round(n).toLocaleString('es-CO'); }
@@ -625,7 +625,7 @@ function calcFlete(selItems){
   return Math.max(36800, totalFlete);
 }
 function calcFleteSimple(uds){ return Math.max(36800, (uds/200)*36800); }
-
+ 
 function toggleOtro(){
   const on=document.getElementById('chk-otro').classList.contains('chk-on');
   document.getElementById('ali-otro').style.display=on?'block':'none';
@@ -640,7 +640,7 @@ function updateAli(){
   }
   document.getElementById('ali').value=vals.join(', ');
 }
-
+ 
 // ─── INVENTARIO ──────────────────────────────────────────
 async function loadInventory(){
   const url = CONFIG.sheet_inventario;
@@ -699,7 +699,7 @@ function updateBadge(id,color){
     if(inp){ inp.disabled=false; inp.style.opacity='1'; inp.max=String(stock); inp.placeholder='0'; }
   }
 }
-
+ 
 // ─── GRILLAS ─────────────────────────────────────────────
 function buildGrid(group, containerId){
   const c=document.getElementById(containerId);
@@ -735,7 +735,7 @@ function buildGrid(group, containerId){
     </div>`;
   }).join('');
 }
-
+ 
 // ─── CANTIDADES ───────────────────────────────────────────
 function onQtyChange(id, color){
   const prod=allProds().find(p=>p.id===id);
@@ -757,7 +757,7 @@ function onQtyChange(id, color){
       const faltaParaPaca=residuo>0 ? prod.pk - residuo : 0;
       let html=`<span style="color:var(--green)">${fmtN(totRef)} uds · ${(totRef/prod.pk).toFixed(1)} pacas</span>`;
       if(faltaParaPaca>0 && !promoOn){
-        html+=`<div style="margin-top:6px;background:#e8f5ee;border:1.5px solid var(--gm);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;color:#1a5c35;line-height:1.5;">📦 En paca sus envases llegan en condiciones óptimas de higiene y con trazabilidad completa desde fábrica. <span style="color:var(--green);font-weight:700">Te faltan ${fmtN(faltaParaPaca)} uds para completar.</span></div>`;
+        html+=`<div style="margin-top:6px;background:#e8f5ee;border:1.5px solid var(--gm);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;color:#1a5c35;line-height:1.5;">📦 Te faltan ${fmtN(faltaParaPaca)} uds para paca — llegan con empaque original de fábrica.</div>`;
       }
       qtot.innerHTML=html;
     }
@@ -765,7 +765,7 @@ function onQtyChange(id, color){
     else { qtot.textContent=''; }
   }
 }
-
+ 
 function getSel(){
   const items=[];
   allProds().forEach(p=>{
@@ -777,7 +777,7 @@ function getSel(){
   });
   return items;
 }
-
+ 
 // ─── NAVEGACIÓN ───────────────────────────────────────────
 function goStep(n){
   [1,2,3].forEach(i=>{
@@ -787,7 +787,7 @@ function goStep(n){
   });
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
+ 
 function goStep2(){
   const sel=getSel();
   const err=document.getElementById('errbanner');
@@ -812,7 +812,7 @@ function goStep2(){
   }
   err.style.display='none'; goStep(2);
 }
-
+ 
 function setTipo(t){
   tipo=t;
   ['nat','jur'].forEach(x=>{
@@ -825,14 +825,14 @@ function setTipo(t){
   document.getElementById('bloque-id-jur').style.display=t==='jur'?'block':'none';
   limpiarAviso();
 }
-
+ 
 function toggleEnvioDif(){
   envioDif=!envioDif;
   document.getElementById('toggle-envio').classList.toggle('active',envioDif);
   document.getElementById('envio-box').style.display=envioDif?'block':'none';
   document.getElementById('envio-sub').textContent=envioDif?'Completa los datos de entrega':'Toca para ingresar otra dirección de entrega';
 }
-
+ 
 function toggleMuestras(){
   pedidoMuestras=!pedidoMuestras;
   const card=document.getElementById('card-muestras');
@@ -841,7 +841,7 @@ function toggleMuestras(){
   card.style.background=pedidoMuestras?'var(--gl)':'';
   sel.style.display=pedidoMuestras?'block':'none';
 }
-
+ 
 function req(fid,iid){
   const f=document.getElementById(fid); const el=document.getElementById(iid);
   const v=el?el.value.trim():'';
@@ -849,7 +849,7 @@ function req(fid,iid){
   if(!v){ f.classList.add('ferr'); f.querySelector('.errmsg').style.display='block'; return false; }
   f.classList.remove('ferr'); f.querySelector('.errmsg').style.display='none'; return true;
 }
-
+ 
 function goStep3(){
   let ok=true;
   if(tipo==='nat'){
@@ -871,7 +871,7 @@ function goStep3(){
   buildResumen();
   goStep(3);
 }
-
+ 
 // ─── DATOS ENVÍO ──────────────────────────────────────────
 function getEnvio(){
   if(envioDif) return { nombre:g('env-nom'), tel:g('env-tel'), dir:g('env-dir')+(g('env-bar')?', '+g('env-bar'):''), ciudad:g('env-ciu')+(g('env-dep')?', '+g('env-dep'):''), barrio:g('env-bar') };
@@ -882,13 +882,13 @@ function getNombre(){ return tipo==='nat'?g('nom'):(g('rsoc')||g('rec')); }
 function getContacto(){ return tipo==='nat'?g('nom'):g('rec'); }
 function getEmpresa(){ return tipo==='nat'?(g('neg')||g('nom')):g('rsoc'); }
 function getTel(){ return tipo==='nat'?g('tel'):g('telj'); }
-
+ 
 // ─── RESUMEN ─────────────────────────────────────────────
 function buildResumen(){
   const sel=getSel();
   const folio=genFolio();
   document.getElementById('folio-display').textContent=folio;
-
+ 
   const IVA=0.19;
   let subBase=0;
   let itemsHTML=sel.map(s=>{
@@ -905,7 +905,7 @@ function buildResumen(){
       <div class="srr">${fmt(subtotal)}</div>
     </div>`;
   }).join('');
-
+ 
   if(pedidoMuestras){
     itemsHTML+=`<div class="srow">
       <div class="srl">🧪 Kit de Muestras<small>Muestrario completo · Transporte incluido</small></div>
@@ -913,7 +913,7 @@ function buildResumen(){
     </div>`;
   }
   document.getElementById('sum-items').innerHTML = itemsHTML || '<div class="srow"><div class="srl" style="color:var(--t3)">Solo kit de muestras</div></div>';
-
+ 
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
   const flete=pedidoMuestras && totalUds===0?0:calcFlete(sel);
@@ -922,7 +922,7 @@ function buildResumen(){
   const cajasResiduo=Math.ceil(residuoUds/200);
   const cajas=totalPacas>0?totalPacas:Math.ceil(totalUds/200);
   const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
-
+ 
   document.getElementById('s-sub').textContent=fmt(subBase);
   document.getElementById('s-iva').textContent=fmt(iva);
   document.getElementById('s-flete').textContent=fmt(flete)+(pedidoMuestras && totalUds===0?'+Kit '+fmt(KIT_PRECIO):'');
@@ -930,12 +930,12 @@ function buildResumen(){
   document.getElementById('s-cajas').textContent=cajasLabel?`(${cajasLabel})`:'';
   document.getElementById('s-total').textContent=fmt(grand);
   document.getElementById('s-total').textContent=fmt(grand);
-
+ 
   const envio=getEnvio();
   const contacto=getContacto();
   const empresa=getEmpresa();
   const tel=getTel();
-
+ 
   const clienteRows=tipo==='nat'
     ?[
       ['Empresa / Negocio', empresa],
@@ -950,14 +950,14 @@ function buildResumen(){
       ['Contacto', contacto],
       ['Celular', tel]
      ];
-
+ 
   document.getElementById('sum-cliente').innerHTML=
     clienteRows.map(([l,v])=>`<div class="srow"><div class="srl">${l}</div><div class="srr">${v||'—'}</div></div>`).join('')+
     `<div class="srow"><div class="srl">Dirección de entrega<small>Barrio: ${envio.barrio||'—'}</small></div><div class="srr" style="text-align:right;max-width:60%">${envio.dir}<small>${envio.ciudad}</small></div></div>`+
     (envioDif?`<div class="srow"><div class="srl" style="color:var(--green);font-size:11px">⚠ Envío a dirección diferente al titular</div><div class="srr"></div></div>`:'')+
     (g('ali')?`<div class="srow"><div class="srl">¿Qué envasa?</div><div class="srr">${g('ali')}</div></div>`:'')+
     (g('notas')?`<div class="srow"><div class="srl">Notas</div><div class="srr" style="text-align:right;max-width:60%">${g('notas')}</div></div>`:'');
-
+ 
   document.getElementById('acuerdo-section').style.display='block';
   document.getElementById('confirmado-box').style.display='none';
   document.getElementById('btn-acuerdo').disabled=false;
@@ -965,7 +965,7 @@ function buildResumen(){
   document.getElementById('sheets-ok').style.display='none';
   document.getElementById('sheets-sending').style.display='none';
 }
-
+ 
 // ─── CONFIRMAR ────────────────────────────────────────────
 async function confirmarAcuerdo(){
   const btn=document.getElementById('btn-acuerdo');
@@ -978,7 +978,7 @@ async function confirmarAcuerdo(){
   document.getElementById('confirmado-box').style.display='block';
   notificarJose();
 }
-
+ 
 // ─── NOTIFICAR A JOSÉ ─────────────────────────────────────
 function notificarJose(){
   const sel=getSel();
@@ -995,7 +995,7 @@ function notificarJose(){
   const flete=calcFlete(sel);
   const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
   const comision=calcComision(sel);
-
+ 
   let msg=`🛒 NUEVO PEDIDO CONFIRMADO · ${folio}\n`;
   msg+=`━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
   msg+=`Empresa: ${empresa}\n`;
@@ -1011,10 +1011,10 @@ function notificarJose(){
   msg+=`\nTOTAL: ${fmt(grand)}\n`;
   msg+=`Comisión estimada: ${fmt(comision)}\n`;
   msg+=`\n✅ El cliente aceptó la liquidación.\nEnvía las formas de pago.`;
-
+ 
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
 }
-
+ 
 // ─── CÁLCULO COMISIÓN ─────────────────────────────────────
 function calcComision(sel){
   // Comisión = precio vendido - precio L2 (costo base)
@@ -1026,7 +1026,7 @@ function calcComision(sel){
   if(pedidoMuestras) com+=KIT_COMISION;
   return Math.abs(Math.round(com));
 }
-
+ 
 // ─── GOOGLE SHEETS ────────────────────────────────────────
 async function registrarEnSheets(){
   if(!CONFIG.sheets_webhook || CONFIG.sheets_webhook.includes('TU_')) return;
@@ -1048,7 +1048,7 @@ async function registrarEnSheets(){
   const envio=getEnvio();
   const folio=document.getElementById('folio-display').textContent;
   const now=new Date();
-
+ 
   const params=new URLSearchParams({
     folio,
     fecha: now.toLocaleDateString('es-CO',{day:'2-digit',month:'2-digit',year:'numeric'}),
@@ -1090,13 +1090,13 @@ async function registrarEnSheets(){
     kit_muestras_comision: pedidoMuestras?KIT_COMISION:0,
     estado: 'Pendiente'  // Estado de pago inicial
   });
-
+ 
   try{
     await fetch(CONFIG.sheets_webhook+'?'+params.toString(), { method:'GET', mode:'no-cors' });
     await new Promise(r=>setTimeout(r,1200));
   }catch(e){ console.log('Sheets error:', e); }
 }
-
+ 
 // ─── PROMO ────────────────────────────────────────────────
 function togglePromo(){
   promoOpen=!promoOpen;
@@ -1124,7 +1124,7 @@ function applyPromo(){
     inp.classList.add('perr');
   }
 }
-
+ 
 // ─── RESET ────────────────────────────────────────────────
 function resetAll(){
   allProds().forEach(p=>p.col.forEach(color=>{
@@ -1153,12 +1153,12 @@ function resetAll(){
   setTipo('nat');
   goStep(1);
 }
-
+ 
 // ─── MEMORIA LOCAL (clientes recurrentes) ─────────────────
 const DB_KEY='sp_clientes_v2';
 function getClientesDB(){ try{ return JSON.parse(localStorage.getItem(DB_KEY)||'{}'); }catch(e){ return {}; } }
 function saveClientesDB(db){ try{ localStorage.setItem(DB_KEY,JSON.stringify(db)); }catch(e){} }
-
+ 
 function limpiarAviso(){
   const av=document.getElementById('aviso-cliente'); if(av) av.style.display='none';
 }
@@ -1194,7 +1194,7 @@ function guardarCliente(){
   }
   saveClientesDB(db);
 }
-
+ 
 // ─── MAKE WEBHOOK ─────────────────────────────────────────
 async function enviarAMake(){
   try{
@@ -1214,7 +1214,7 @@ async function enviarAMake(){
     });
   }catch(e){ console.log(e); }
 }
-
+ 
 // ─── INIT ─────────────────────────────────────────────────
 buildGrid('fp','grid-fp');
 buildGrid('pm','grid-pm');
@@ -1222,3 +1222,4 @@ loadInventory();
 </script>
 </body>
 </html>
+ 
