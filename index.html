@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -557,7 +558,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
 const CONFIG = {
   empresa:        'Smart Packaging Colombia',
   wa_ventas:      '573124124034',
-  wa_bodega:      '573502241852',
+  wa_bodega:      '573024967908',
   wa_contabilidad:'573236375088',
   sheets_webhook: 'https://script.google.com/macros/s/AKfycbwe5CV37LNtQT0ayrYMcLMKj7smoPN64gxuDmu2VtPs3GGP9yivhMIn6S8WZuRroYP_/exec',
   sheet_inventario:'https://script.google.com/macros/s/AKfycbwe5CV37LNtQT0ayrYMcLMKj7smoPN64gxuDmu2VtPs3GGP9yivhMIn6S8WZuRroYP_/exec?action=inventario',
@@ -995,7 +996,7 @@ function notificarJose(){
   sel.forEach(s=>{ subBase+=s.qty*s.prod.t[listaActiva]; });
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
-  const flete=calcFlete(sel);
+  const flete=pedidoMuestras && sel.length===0 ? 0 : calcFlete(sel);
   const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
   const comision=calcComision(sel);
 
@@ -1016,14 +1017,6 @@ function notificarJose(){
   msg+=`\n✅ El cliente aceptó la liquidación.\nEnvía las formas de pago.`;
 
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
-
-  // Notificar Bodega
-  const msgBodega=`🛒 Nuevo pedido recibido · ${folio}\n━━━━━━━━━━━━━━━━━━━━━━━━━━\nEmpresa: ${empresa}\nTotal: ${fmt(grand)}\n\nRevisa el Sheets para procesar.`;
-  setTimeout(()=>{ window.open('https://wa.me/'+CONFIG.wa_bodega+'?text='+encodeURIComponent(msgBodega), '_blank'); }, 1500);
-
-  // Notificar Contabilidad
-  const msgContab=`🛒 Nuevo pedido recibido · ${folio}\n━━━━━━━━━━━━━━━━━━━━━━━━━━\nEmpresa: ${empresa}\nTotal: ${fmt(grand)}\n\nRevisa el Sheets para procesar.`;
-  setTimeout(()=>{ window.open('https://wa.me/'+CONFIG.wa_contabilidad+'?text='+encodeURIComponent(msgContab), '_blank'); }, 3000);
 }
 
 // ─── CÁLCULO COMISIÓN ─────────────────────────────────────
@@ -1034,7 +1027,8 @@ function calcComision(sel){
     const precioBase=s.prod.t[1]; // L2 Pyme es el precio base
     return a+s.qty*(precioVenta - precioBase);
   },0);
-  if(pedidoMuestras) com+=KIT_COMISION;
+  // Kit de muestras: comisión solo si NO es L5 Convenio
+  if(pedidoMuestras && listaActiva !== 4) com+=KIT_COMISION;
   return Math.abs(Math.round(com));
 }
 
@@ -1053,7 +1047,7 @@ async function registrarEnSheets(){
   });
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
-  const flete=calcFlete(sel);
+  const flete=pedidoMuestras && totalUds===0 ? 0 : calcFlete(sel);
   const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
   const comision=calcComision(sel);
   const envio=getEnvio();
@@ -1146,6 +1140,11 @@ function resetAll(){
   }));
   ['nom','tel','ced','neg','dir','bar','ciu','dep','eml','rut','rsoc','rec','telj','dirj','barj','ciuj','depj','emlj','ali','notas','env-nom','env-tel','env-dir','env-bar','env-ciu','env-dep'].forEach(id=>{
     const e=document.getElementById(id); if(e) e.value='';
+  });
+  // Limpiar botones de envase (.ali-btn)
+  document.querySelectorAll('.ali-btn.on').forEach(b=>{
+    b.classList.remove('on');
+    if(b.dataset.val==='Otro') document.getElementById('ali-otro').style.display='none';
   });
   document.getElementById('errbanner').style.display='none';
   if(envioDif) toggleEnvioDif();
