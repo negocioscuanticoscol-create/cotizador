@@ -735,7 +735,7 @@ function notificarJose(){
 }
 
 function calcComision(sel){
-  let com=sel.reduce((a,s)=>{ const precioVenta=s.prod.t[listaActiva]; const precioBase=s.prod.t[1]; return a+s.qty*(precioVenta-precioBase); },0);
+  let com=sel.reduce((a,s)=>{ const precioVenta=s.prod.t[listaActiva]; const precioBase=s.prod.t[4]; return a+s.qty*(precioVenta-precioBase); },0);
   if(pedidoMuestras && listaActiva !== 4) com+=KIT_COMISION;
   return Math.abs(Math.round(com));
 }
