@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -40,26 +39,10 @@ a{text-decoration:none;color:inherit}
 .hbadge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:11px;padding:5px 10px;border-radius:20px}
 #inv-status{margin-top:8px;font-size:10px;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace}
 
-/* ── AVISO TRAZABILIDAD ── */
-.aviso-trazabilidad{
-  margin:14px 12px 4px;
-  background:linear-gradient(135deg,#0a2a1a 0%,#1a4a2a 100%);
-  border:1.5px solid var(--gm);
-  border-radius:var(--rl2);
-  padding:16px 16px 14px;
-  position:relative;
-  overflow:hidden;
-}
-.aviso-trazabilidad::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--gm),var(--acc),var(--gm));
-}
+.aviso-trazabilidad{margin:14px 12px 4px;background:linear-gradient(135deg,#0a2a1a 0%,#1a4a2a 100%);border:1.5px solid var(--gm);border-radius:var(--rl2);padding:16px 16px 14px;position:relative;overflow:hidden;}
+.aviso-trazabilidad::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gm),var(--acc),var(--gm));}
 .aviso-trazabilidad-icon{font-size:26px;margin-bottom:8px;display:block}
-.aviso-trazabilidad-titulo{
-  font-size:13px;font-weight:800;color:var(--acc);
-  text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;
-  font-family:'JetBrains Mono',monospace;
-}
+.aviso-trazabilidad-titulo{font-size:13px;font-weight:800;color:var(--acc);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;font-family:'JetBrains Mono',monospace;}
 .aviso-trazabilidad-texto{font-size:13px;color:rgba(255,255,255,.85);line-height:1.65;font-weight:500}
 .aviso-trazabilidad-texto strong{color:#6ee9a0;font-weight:700}
 
@@ -78,24 +61,11 @@ a{text-decoration:none;color:inherit}
 
 .slabel{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;padding:18px 20px 10px}
 
-/* ── IBOX MEJORADO ── */
 .ibox{margin:14px 12px 0;background:var(--al);border:1px solid rgba(240,165,0,.3);border-radius:var(--r);padding:12px 14px;font-size:12px;color:#7a5800;line-height:1.6}
 .ibox strong{color:#5a4000}
-/* Avisos de PACA y MÍNIMO más grandes */
-.aviso-paca{
-  display:inline-flex;align-items:center;gap:5px;
-  background:#fff3cd;border:1.5px solid var(--acc);
-  border-radius:8px;padding:5px 10px;font-size:13px;font-weight:700;color:#7a5800;
-  margin-top:4px;line-height:1.3;
-}
-.aviso-min{
-  display:inline-flex;align-items:center;gap:5px;
-  background:var(--rl);border:1.5px solid rgba(214,48,49,.35);
-  border-radius:8px;padding:5px 10px;font-size:13px;font-weight:700;color:var(--red);
-  margin-top:3px;line-height:1.3;
-}
+.aviso-paca{display:inline-flex;align-items:center;gap:5px;background:#fff3cd;border:1.5px solid var(--acc);border-radius:8px;padding:5px 10px;font-size:13px;font-weight:700;color:#7a5800;margin-top:4px;line-height:1.3;}
+.aviso-min{display:inline-flex;align-items:center;gap:5px;background:var(--rl);border:1.5px solid rgba(214,48,49,.35);border-radius:8px;padding:5px 10px;font-size:13px;font-weight:700;color:var(--red);margin-top:3px;line-height:1.3;}
 
-/* PROMO */
 .promo{margin:10px 12px 0;background:white;border:1.5px solid var(--bd);border-radius:var(--r);overflow:hidden;transition:border-color .2s}
 .promo.unlocked{border-color:var(--gm)}
 .promo-hdr{padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer}
@@ -115,7 +85,6 @@ a{text-decoration:none;color:inherit}
 .pmsg.ok{background:var(--gl);color:var(--green);display:block}
 .pmsg.fail{background:var(--rl);color:var(--red);display:block}
 
-/* PRODUCTS */
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px;margin-bottom:16px}
 @media(max-width:400px){.pgrid{grid-template-columns:1fr}}
 .pc{background:white;border:1.5px solid var(--bd);border-radius:var(--r);padding:12px 11px;transition:all .18s;position:relative;overflow:hidden}
@@ -148,12 +117,7 @@ a{text-decoration:none;color:inherit}
 .qwarn{font-size:10px;color:var(--red);margin-top:3px;display:none}
 .qtotline{font-size:10px;font-family:'JetBrains Mono',monospace;margin-top:5px;text-align:right;color:var(--t2)}
 
-/* KIT MUESTRAS */
-.kit-muestras-card{
-  margin:0 12px 16px;
-  background:white;border:2px solid var(--acc);border-radius:var(--rl2);
-  padding:14px 15px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden;
-}
+.kit-muestras-card{margin:0 12px 16px;background:white;border:2px solid var(--acc);border-radius:var(--rl2);padding:14px 15px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden;}
 .kit-muestras-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--acc)}
 .kit-muestras-card.sel{background:var(--al);border-color:var(--acc)}
 .km-top{display:flex;align-items:center;justify-content:space-between}
@@ -162,7 +126,6 @@ a{text-decoration:none;color:inherit}
 .km-desc{font-size:12px;color:var(--t2);margin-top:5px;line-height:1.5}
 .km-sel{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--bd2);font-size:12px;color:var(--green);font-weight:600}
 
-/* FORM */
 .fwrap{padding:0 12px 14px}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:11px;font-weight:600;color:var(--t2);margin-bottom:5px;letter-spacing:.05em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
@@ -181,7 +144,6 @@ a{text-decoration:none;color:inherit}
 .tipo-card .tsub{font-size:10px;color:var(--t3);margin-top:2px}
 .fbox{background:var(--gl);border:1px solid rgba(45,158,95,.25);border-radius:var(--r);padding:11px 14px;margin-bottom:13px;font-size:12px;color:var(--green);line-height:1.6}
 
-/* toggle envio */
 .toggle-envio{margin:10px 0 4px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color .15s}
 .toggle-envio.active{border-color:var(--gm);background:var(--gl)}
 .te-label{font-size:13px;font-weight:600;color:var(--t)}
@@ -194,7 +156,6 @@ a{text-decoration:none;color:inherit}
 .envio-box{display:none;background:white;border:1.5px solid var(--gm);border-radius:var(--r);padding:13px 14px;margin-bottom:4px}
 .envio-box-title{font-size:11px;font-weight:600;color:var(--green);font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
 
-/* RESUMEN */
 .swrap{padding:14px 12px}
 .scard{background:white;border:1px solid var(--bd);border-radius:var(--rl2);overflow:hidden;margin-bottom:12px}
 .shdr{background:var(--dark);padding:11px 15px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
@@ -227,8 +188,6 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
 .ali-btn{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:1.5px solid var(--bd);border-radius:8px;padding:8px 13px;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;user-select:none;-webkit-user-select:none;}
 .ali-btn.on{background:var(--gl);border-color:var(--gm);color:var(--green);font-weight:700;}
 .sheets-ok{display:none;font-size:11px;color:var(--green);text-align:center;margin-top:4px}
-
-/* aviso cliente regresa */
 .aviso-cliente{display:none;background:var(--gl);border:1px solid rgba(45,158,95,.25);border-radius:var(--r);padding:10px 13px;margin-bottom:10px;align-items:center;gap:10px}
 .aviso-cliente-ico{font-size:20px}
 .aviso-cliente-txt{font-size:12px;color:var(--green);line-height:1.5}
@@ -268,10 +227,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
   <div class="step" id="st3"><span class="snum">3</span>Cotización</div>
 </div>
 
-<!-- ═══ PASO 1 ═══ -->
 <div class="panel active" id="p1">
-
-  <!-- AVISO TRAZABILIDAD GRANDE -->
   <div class="aviso-trazabilidad">
     <span class="aviso-trazabilidad-icon">🛡️</span>
     <div class="aviso-trazabilidad-titulo">⚠ Recomendación especial de trazabilidad y esterilización</div>
@@ -280,13 +236,11 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
       Esto asegura que sus envases lleguen en condiciones óptimas de higiene y con trazabilidad completa desde fábrica.
     </div>
   </div>
-
   <div class="ibox" style="margin-top:12px">
     <strong>Precios incluyen IVA (19%).</strong>
     <span class="aviso-min">📦 Pedido mínimo: 100 unidades por color</span><br>
     Tus compras se acumulan para precio mayorista. Cada caja ~200 uds · flete $36.800 por caja.
   </div>
-
   <div class="promo" id="promobox">
     <div class="promo-hdr" onclick="togglePromo()">
       <div class="picon" id="picon">🎁</div>
@@ -300,172 +254,70 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
       <div class="pmsg" id="pmsg"></div>
     </div>
   </div>
-
-  <!-- KIT DE MUESTRAS -->
   <div class="slabel" style="margin-top:14px">// Kit especial</div>
   <div class="kit-muestras-card" id="card-muestras" onclick="toggleMuestras()">
-    <div class="km-top">
-      <div class="km-title">🧪 Kit de Muestras</div>
-      <div class="km-badge">$60.000</div>
-    </div>
+    <div class="km-top"><div class="km-title">🧪 Kit de Muestras</div><div class="km-badge">$60.000</div></div>
     <div class="km-desc">Muestrario completo de referencias Flexipack y PetMulti. Transporte incluido a todo Colombia. Ideal para conocer el producto antes de tu primer pedido.</div>
     <div class="km-sel" id="muestras-sel">✓ Kit de muestras agregado a tu pedido</div>
   </div>
-
   <div class="slabel">// Flexipack — PP hermético</div>
   <div class="pgrid" id="grid-fp"></div>
-
   <div class="slabel">// PetMulti — PET transparente</div>
   <div class="pgrid" id="grid-pm"></div>
-
   <div id="errbanner">Selecciona al menos un producto con mínimo 100 unidades, o el kit de muestras.</div>
   <div class="bwrap" style="padding-top:4px">
     <button class="btn btn-p" onclick="goStep2()">Continuar con mis datos →</button>
   </div>
 </div>
 
-<!-- ═══ PASO 2 ═══ -->
 <div class="panel" id="p2">
   <div class="fwrap" style="padding-top:14px">
     <div class="fbox"><strong>Envío a toda Colombia</strong> — una vez verificado el pago despachamos de inmediato. Tu pedido llega en 2-3 días hábiles. Flete incluido en la factura.</div>
-
     <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px">Tipo de cliente *</div>
     <div class="tipo-grid">
-      <div class="tipo-card tsel" id="tc-nat" onclick="setTipo('nat')">
-        <div class="ticon">👤</div>
-        <div class="ttitle">Persona natural</div>
-        <div class="tsub">Cédula de ciudadanía</div>
-      </div>
-      <div class="tipo-card" id="tc-jur" onclick="setTipo('jur')">
-        <div class="ticon">🏢</div>
-        <div class="ttitle">Persona jurídica</div>
-        <div class="tsub">Empresa con NIT / RUT</div>
-      </div>
+      <div class="tipo-card tsel" id="tc-nat" onclick="setTipo('nat')"><div class="ticon">👤</div><div class="ttitle">Persona natural</div><div class="tsub">Cédula de ciudadanía</div></div>
+      <div class="tipo-card" id="tc-jur" onclick="setTipo('jur')"><div class="ticon">🏢</div><div class="ttitle">Persona jurídica</div><div class="tsub">Empresa con NIT / RUT</div></div>
     </div>
-
-    <!-- AVISO cliente regresante -->
     <div class="aviso-cliente" id="aviso-cliente">
       <div class="aviso-cliente-ico">👋</div>
       <div class="aviso-cliente-txt"><strong id="aviso-nombre"></strong><br><span id="aviso-sub"></span></div>
     </div>
-
-    <!-- ── PERSONA NATURAL ── -->
     <div id="form-nat">
-      <!-- ID con búsqueda -->
       <div id="bloque-id-nat">
-        <div class="field" id="f-ced">
-          <label>Cédula de ciudadanía *</label>
-          <input type="text" id="ced" placeholder="Número de cédula" oninput="buscarCliente()">
-          <div class="errmsg">Requerido</div>
-        </div>
+        <div class="field" id="f-ced"><label>Cédula de ciudadanía *</label><input type="text" id="ced" placeholder="Número de cédula" oninput="buscarCliente()"><div class="errmsg">Requerido</div></div>
       </div>
-      <!-- NUEVO: Nombre de negocio separado del contacto -->
-      <div class="field" id="f-neg">
-        <label>Nombre del negocio / marca</label>
-        <input type="text" id="neg" placeholder="Ej: Lácteos El Campo, Deli Salsas...">
-      </div>
-      <div class="field" id="f-nom">
-        <label>Nombre de contacto *</label>
-        <input type="text" id="nom" placeholder="Nombre y apellidos de quien hace el pedido">
-        <div class="errmsg">Requerido</div>
-      </div>
-      <div class="field" id="f-tel">
-        <label>Celular *</label>
-        <input type="tel" id="tel" placeholder="300 000 0000">
-        <div class="errmsg">Requerido</div>
-      </div>
-      <div class="field" id="f-dir">
-        <label>Dirección completa *</label>
-        <input type="text" id="dir" placeholder="Calle, carrera, número">
-        <div class="errmsg">Requerido</div>
-      </div>
+      <div class="field" id="f-neg"><label>Nombre del negocio / marca</label><input type="text" id="neg" placeholder="Ej: Lácteos El Campo, Deli Salsas..."></div>
+      <div class="field" id="f-nom"><label>Nombre de contacto *</label><input type="text" id="nom" placeholder="Nombre y apellidos de quien hace el pedido"><div class="errmsg">Requerido</div></div>
+      <div class="field" id="f-tel"><label>Celular *</label><input type="tel" id="tel" placeholder="300 000 0000"><div class="errmsg">Requerido</div></div>
+      <div class="field" id="f-dir"><label>Dirección completa *</label><input type="text" id="dir" placeholder="Calle, carrera, número"><div class="errmsg">Requerido</div></div>
       <div class="frow">
-        <div class="field" id="f-bar">
-          <label>Barrio *</label>
-          <input type="text" id="bar" placeholder="Barrio">
-          <div class="errmsg">Requerido</div>
-        </div>
-        <div class="field" id="f-ciu">
-          <label>Ciudad *</label>
-          <input type="text" id="ciu" placeholder="Ciudad">
-          <div class="errmsg">Requerido</div>
-        </div>
+        <div class="field" id="f-bar"><label>Barrio *</label><input type="text" id="bar" placeholder="Barrio"><div class="errmsg">Requerido</div></div>
+        <div class="field" id="f-ciu"><label>Ciudad *</label><input type="text" id="ciu" placeholder="Ciudad"><div class="errmsg">Requerido</div></div>
       </div>
-      <div class="field" id="f-dep">
-        <label>Departamento *</label>
-        <input type="text" id="dep" placeholder="Ej: Cundinamarca, Antioquia">
-        <div class="errmsg">Requerido</div>
-      </div>
-      <div class="field" id="f-eml">
-        <label>Correo electrónico *</label>
-        <input type="email" id="eml" placeholder="tucorreo@email.com">
-        <div class="errmsg">Requerido</div>
-      </div>
+      <div class="field" id="f-dep"><label>Departamento *</label><input type="text" id="dep" placeholder="Ej: Cundinamarca, Antioquia"><div class="errmsg">Requerido</div></div>
+      <div class="field" id="f-eml"><label>Correo electrónico *</label><input type="email" id="eml" placeholder="tucorreo@email.com"><div class="errmsg">Requerido</div></div>
     </div>
-
-    <!-- ── PERSONA JURÍDICA ── -->
     <div id="form-jur" style="display:none">
       <div id="bloque-id-jur">
-        <div class="field" id="f-rut">
-          <label>RUT / NIT *</label>
-          <input type="text" id="rut" placeholder="NIT de la empresa" oninput="buscarCliente()">
-          <div class="errmsg">Requerido</div>
-        </div>
+        <div class="field" id="f-rut"><label>RUT / NIT *</label><input type="text" id="rut" placeholder="NIT de la empresa" oninput="buscarCliente()"><div class="errmsg">Requerido</div></div>
       </div>
-      <div class="field" id="f-rsoc">
-        <label>Razón social *</label>
-        <input type="text" id="rsoc" placeholder="Nombre legal de la empresa">
-        <div class="errmsg">Requerido</div>
-      </div>
-      <!-- NUEVO: Nombre de contacto separado de la empresa -->
-      <div class="field" id="f-rec">
-        <label>Nombre de contacto (quien hace el pedido) *</label>
-        <input type="text" id="rec" placeholder="Nombre completo de la persona de contacto">
-        <div class="errmsg">Requerido</div>
-      </div>
-      <div class="field" id="f-telj">
-        <label>Celular *</label>
-        <input type="tel" id="telj" placeholder="300 000 0000">
-        <div class="errmsg">Requerido</div>
-      </div>
-      <div class="field" id="f-dirj">
-        <label>Dirección *</label>
-        <input type="text" id="dirj" placeholder="Calle, carrera, número">
-        <div class="errmsg">Requerido</div>
-      </div>
+      <div class="field" id="f-rsoc"><label>Razón social *</label><input type="text" id="rsoc" placeholder="Nombre legal de la empresa"><div class="errmsg">Requerido</div></div>
+      <div class="field" id="f-rec"><label>Nombre de contacto (quien hace el pedido) *</label><input type="text" id="rec" placeholder="Nombre completo de la persona de contacto"><div class="errmsg">Requerido</div></div>
+      <div class="field" id="f-telj"><label>Celular *</label><input type="tel" id="telj" placeholder="300 000 0000"><div class="errmsg">Requerido</div></div>
+      <div class="field" id="f-dirj"><label>Dirección *</label><input type="text" id="dirj" placeholder="Calle, carrera, número"><div class="errmsg">Requerido</div></div>
       <div class="frow">
-        <div class="field" id="f-barj">
-          <label>Barrio *</label>
-          <input type="text" id="barj" placeholder="Barrio">
-          <div class="errmsg">Requerido</div>
-        </div>
-        <div class="field" id="f-ciuj">
-          <label>Ciudad *</label>
-          <input type="text" id="ciuj" placeholder="Ciudad">
-          <div class="errmsg">Requerido</div>
-        </div>
+        <div class="field" id="f-barj"><label>Barrio *</label><input type="text" id="barj" placeholder="Barrio"><div class="errmsg">Requerido</div></div>
+        <div class="field" id="f-ciuj"><label>Ciudad *</label><input type="text" id="ciuj" placeholder="Ciudad"><div class="errmsg">Requerido</div></div>
       </div>
-      <div class="field" id="f-depj">
-        <label>Departamento *</label>
-        <input type="text" id="depj" placeholder="Departamento">
-        <div class="errmsg">Requerido</div>
-      </div>
-      <div class="field">
-        <label>Correo electrónico</label>
-        <input type="email" id="emlj" placeholder="correo@empresa.com">
-      </div>
+      <div class="field" id="f-depj"><label>Departamento *</label><input type="text" id="depj" placeholder="Departamento"><div class="errmsg">Requerido</div></div>
+      <div class="field"><label>Correo electrónico</label><input type="email" id="emlj" placeholder="correo@empresa.com"></div>
     </div>
-
     <div style="background:var(--gl);border:1px solid rgba(45,158,95,.25);border-radius:var(--r);padding:10px 14px;margin:4px 0 10px;font-size:12px;color:var(--green);display:flex;align-items:center;gap:8px">
       <span style="font-size:16px">📦</span>
       <span><strong>Entrega en la misma dirección de facturación</strong> — si necesitas enviar a otro lugar actívalo abajo.</span>
     </div>
-
     <div class="toggle-envio" id="toggle-envio" onclick="toggleEnvioDif()">
-      <div>
-        <div class="te-label">Enviar a dirección diferente</div>
-        <div class="te-sub" id="envio-sub">Toca para ingresar otra dirección de entrega</div>
-      </div>
+      <div><div class="te-label">Enviar a dirección diferente</div><div class="te-sub" id="envio-sub">Toca para ingresar otra dirección de entrega</div></div>
       <div class="te-sw" id="te-sw"></div>
     </div>
     <div class="envio-box" id="envio-box">
@@ -479,7 +331,6 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
       </div>
       <div class="field" id="f-env-dep"><label>Departamento *</label><input type="text" id="env-dep" placeholder="Departamento"><div class="errmsg">Requerido</div></div>
     </div>
-
     <div class="field" style="margin-top:8px">
       <label>¿Qué vas a envasar?</label>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 6px" id="ali-btns">
@@ -503,14 +354,10 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
   </div>
 </div>
 
-<!-- ═══ PASO 3 ═══ -->
 <div class="panel" id="p3">
   <div class="swrap">
     <div class="scard">
-      <div class="shdr">
-        <span>Cotización Smart Packaging Colombia</span>
-        <span class="shdr-folio" id="folio-display"></span>
-      </div>
+      <div class="shdr"><span>Cotización Smart Packaging Colombia</span><span class="shdr-folio" id="folio-display"></span></div>
       <div id="sum-items"></div>
       <div style="padding:10px 15px;background:var(--bg)">
         <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Subtotal sin IVA</span><span style="font-family:'JetBrains Mono',monospace;font-weight:500" id="s-sub">-</span></div>
@@ -522,28 +369,21 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
         <span style="font-size:22px;font-weight:800;color:var(--green);font-family:'JetBrains Mono',monospace" id="s-total">$0</span>
       </div>
     </div>
-
     <div class="scard">
       <div class="shdr"><span>Datos de entrega</span></div>
       <div id="sum-cliente"></div>
     </div>
-
     <p class="snote">Precios sin IVA en lista. IVA 19% y flete incluidos en el total. Cotización válida 5 días hábiles.</p>
-
     <div id="acuerdo-section">
-      <button class="btn btn-acuerdo" onclick="confirmarAcuerdo()" id="btn-acuerdo">
-        ✅ Estoy de acuerdo con la liquidación
-      </button>
+      <button class="btn btn-acuerdo" onclick="confirmarAcuerdo()" id="btn-acuerdo">✅ Estoy de acuerdo con la liquidación</button>
       <div class="sheets-sending" id="sheets-sending">⏳ Registrando tu pedido...</div>
       <div class="sheets-ok" id="sheets-ok">✓ Pedido registrado correctamente</div>
     </div>
-
     <div class="confirmado-box" id="confirmado-box" style="display:none">
       <div class="confirmado-icon">🎉</div>
       <div class="confirmado-title">¡Gracias, tu pedido está confirmado!</div>
       <div class="confirmado-sub">Estamos recibiendo tu acuerdo. En breve te contactamos por WhatsApp con las formas de pago.</div>
     </div>
-
     <button class="btn btn-s" onclick="goStep(2)" style="margin-top:8px">← Editar datos</button>
     <button class="btn btn-s" onclick="resetAll()" style="margin-top:8px">Nueva cotización</button>
   </div>
@@ -553,15 +393,15 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
 
 <script>
 // ═══════════════════════════════════════════════════════
-// CONFIGURACIÓN CENTRAL
+// CONFIGURACIÓN CENTRAL — v8 · Script v7
 // ═══════════════════════════════════════════════════════
 const CONFIG = {
   empresa:        'Smart Packaging Colombia',
   wa_ventas:      '573124124034',
   wa_bodega:      '573024967908',
   wa_contabilidad:'573236375088',
-  sheets_webhook: 'https://script.google.com/macros/s/AKfycbwe5CV37LNtQT0ayrYMcLMKj7smoPN64gxuDmu2VtPs3GGP9yivhMIn6S8WZuRroYP_/exec',
-  sheet_inventario:'https://script.google.com/macros/s/AKfycbwe5CV37LNtQT0ayrYMcLMKj7smoPN64gxuDmu2VtPs3GGP9yivhMIn6S8WZuRroYP_/exec?action=inventario',
+  sheets_webhook:  'https://script.google.com/macros/s/AKfycbzXCgMFm1S0Vg9-qc6VmnJFm9RUTS5rFi_EAtzHvgd8gND5lyXH_EcdsnJYp0M3NgD5/exec',
+  sheet_inventario:'https://script.google.com/macros/s/AKfycbzXCgMFm1S0Vg9-qc6VmnJFm9RUTS5rFi_EAtzHvgd8gND5lyXH_EcdsnJYp0M3NgD5/exec?action=inventario',
 };
 
 const WA = CONFIG.wa_ventas;
@@ -572,18 +412,15 @@ const PROMOS = {
   'CONVENIO2026':    { lista: 4, msg: 'Código válido — precio convenio desbloqueado ✓' }
 };
 
-let promoOn = false, promoOpen = false, listaActiva = 1; // 1 = L2 Pyme por defecto
+let promoOn = false, promoOpen = false, listaActiva = 1;
 
-// ─── CATÁLOGO ────────────────────────────────────────────
-// t = [L1 Muestras, L2 Pyme, L3 Mayorista, L4 Distribuidor, L5 Convenio]
-// Kit de Muestras: precio fijo $60.000
 const CAT = {
   fp: [
     {id:'f115',  v:'115 ml', d:'Ø67×52',   pk:1890, col:['transparente'],                t:[592,547,507,474,444]},
     {id:'f155',  v:'155 ml', d:'Ø67×69',   pk:1800, col:['transparente','blanco'],       t:[593,548,508,475,445]},
     {id:'f180',  v:'180 ml', d:'Ø95×45',   pk:1056, col:['transparente','blanco'],       t:[851,786,729,681,638]},
-    {id:'f240',  v:'240 ml', d:'Ø95×54',    pk:480, col:['transparente'],                t:[802,741,687,642,601]},
-    {id:'f365',  v:'365 ml', d:'Ø97×82',    pk:600, col:['blanco','transparente'],        t:[1069,987,916,855,801]},
+    {id:'f240',  v:'240 ml', d:'Ø95×54',    pk:480, col:['transparente','blanco'],       t:[802,741,687,642,601]},
+    {id:'f365',  v:'365 ml', d:'Ø97×82',    pk:600, col:['blanco','transparente'],       t:[1069,987,916,855,801]},
     {id:'f520',  v:'520 ml', d:'Ø95×116',   pk:575, col:['transparente','blanco'],       t:[1190,1099,1019,952,892]},
     {id:'f565',  v:'565 ml', d:'Ø118×80',   pk:435, col:['transparente','blanco'],       t:[1255,1158,1075,1003,940]},
     {id:'f1001', v:'1.000 ml',d:'Ø122×126', pk:308, col:['transparente','blanco'],       t:[1847,1706,1583,1478,1385]},
@@ -595,18 +432,15 @@ const CAT = {
   ]
 };
 
-// Comisión Kit Muestras: se calcula como diferencia entre L1 y L2
 const KIT_PRECIO = 60000;
-const KIT_L2     = 60000; // precio convenio del kit
-const KIT_COMISION = 8000; // comisión fija por kit de muestras
-
+const KIT_L2     = 60000;
+const KIT_COMISION = 8000;
 const LISTA_NAMES = ['L1 Muestras','L2 Pyme','L3 Mayorista','L4 Distribuidor','L5 Convenio'];
 const allProds = () => [...CAT.fp, ...CAT.pm];
 
 let tipo = 'nat', envioDif = false, pedidoMuestras = false;
 let inventory = {};
 
-// ─── HELPERS ────────────────────────────────────────────
 function fmt(n){ return '$\u202f'+Math.round(n).toLocaleString('es-CO',{useGrouping:true})+'\u202fCOP'; }
 function fmtN(n){ return Math.round(n).toLocaleString('es-CO'); }
 function g(id){ const e=document.getElementById(id); return e?e.value.trim():''; }
@@ -614,7 +448,6 @@ function genFolio(){
   const n=new Date();
   return 'SP-'+n.getFullYear()+String(n.getMonth()+1).padStart(2,'0')+String(n.getDate()).padStart(2,'0')+'-'+String(n.getHours()).padStart(2,'0')+String(n.getMinutes()).padStart(2,'0');
 }
-// Flete: $79.000 por paca completa + $36.800 por cada 200 uds residuales
 function calcFlete(selItems){
   if(!selItems || selItems.length===0) return 36800;
   let totalFlete=0;
@@ -627,16 +460,11 @@ function calcFlete(selItems){
   });
   return Math.max(36800, totalFlete);
 }
-function calcFleteSimple(uds){ return Math.max(36800, (uds/200)*36800); }
-
 function toggleAli(el){
   el.classList.toggle('on');
-  if(el.dataset.val==='Otro'){
-    document.getElementById('ali-otro').style.display=el.classList.contains('on')?'block':'none';
-  }
+  if(el.dataset.val==='Otro') document.getElementById('ali-otro').style.display=el.classList.contains('on')?'block':'none';
   updateAli();
 }
-function toggleOtro(){}
 function updateAli(){
   const btns=document.querySelectorAll('.ali-btn.on');
   const vals=Array.from(btns).map(b=>b.dataset.val);
@@ -645,17 +473,9 @@ function updateAli(){
   document.getElementById('ali').value=final.join(', ');
 }
 
-// ─── INVENTARIO ──────────────────────────────────────────
 async function loadInventory(){
-  const url = CONFIG.sheet_inventario;
-  if(url==='TU_URL_SHEETS_AQUI'){
-    allProds().forEach(p=>p.col.forEach(c=>{ inventory[p.id+'_'+c]=-1; }));
-    updateAllBadges();
-    document.getElementById('inv-status').textContent='';
-    return;
-  }
   try{
-    const r=await fetch(url);
+    const r=await fetch(CONFIG.sheet_inventario);
     const txt=await r.text();
     txt.trim().split('\n').slice(1).forEach(row=>{
       const cols=row.split(',');
@@ -674,12 +494,7 @@ async function loadInventory(){
     document.getElementById('inv-status').textContent='';
   }
 }
-function getStock(id,color){
-  const k=id+'_'+color;
-  if(!Object.keys(inventory).length) return -1;
-  return inventory[k]!==undefined?inventory[k]:-1;
-}
-function isAvail(id,color){ return getStock(id,color)!==0; }
+function getStock(id,color){ const k=id+'_'+color; if(!Object.keys(inventory).length) return -1; return inventory[k]!==undefined?inventory[k]:-1; }
 function updateAllBadges(){ allProds().forEach(p=>p.col.forEach(c=>updateBadge(p.id,c))); }
 function updateBadge(id,color){
   const el=document.getElementById('sb-'+id+'_'+color); if(!el) return;
@@ -697,14 +512,11 @@ function updateBadge(id,color){
       el.className='sbadge';
       el.style.cssText='background:#fff8e6;color:#CC5500;font-size:9px;padding:2px 6px;border-radius:8px;font-weight:700;display:inline-flex';
       el.textContent='Solo '+fmtN(stock)+' uds';
-    } else {
-      el.className='sbadge s-ok'; el.textContent='Disponible'; el.style.cssText='';
-    }
+    } else { el.className='sbadge s-ok'; el.textContent='Disponible'; el.style.cssText=''; }
     if(inp){ inp.disabled=false; inp.style.opacity='1'; inp.max=String(stock); inp.placeholder='0'; }
   }
 }
 
-// ─── GRILLAS ─────────────────────────────────────────────
 function buildGrid(group, containerId){
   const c=document.getElementById(containerId);
   const label=group==='pm'?'PetMulti PET':'Flexipack PP';
@@ -740,7 +552,6 @@ function buildGrid(group, containerId){
   }).join('');
 }
 
-// ─── CANTIDADES ───────────────────────────────────────────
 function onQtyChange(id, color){
   const prod=allProds().find(p=>p.id===id);
   const cid=id+'_'+color;
@@ -760,35 +571,21 @@ function onQtyChange(id, color){
       const residuo=totRef % prod.pk;
       const faltaParaPaca=residuo>0 ? prod.pk - residuo : 0;
       let html=`<span style="color:var(--green)">${fmtN(totRef)} uds · ${(totRef/prod.pk).toFixed(1)} pacas</span>`;
-      if(faltaParaPaca>0){
-        html+=`<div style="margin-top:6px;background:#e8f5ee;border:1.5px solid var(--gm);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;color:#1a5c35;line-height:1.5;">📦 Te faltan ${fmtN(faltaParaPaca)} uds para paca — llegan con empaque original de fábrica y sin manipulación.</div>`;
-      }
+      if(faltaParaPaca>0) html+=`<div style="margin-top:6px;background:#e8f5ee;border:1.5px solid var(--gm);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;color:#1a5c35;line-height:1.5;">📦 Te faltan ${fmtN(faltaParaPaca)} uds para paca — llegan con empaque original de fábrica y sin manipulación.</div>`;
       qtot.innerHTML=html;
-    }
-    else if(totRef>0){ qtot.innerHTML=`<span style="color:var(--red)">${fmtN(totRef)} uds — mín. 100</span>`; }
+    } else if(totRef>0){ qtot.innerHTML=`<span style="color:var(--red)">${fmtN(totRef)} uds — mín. 100</span>`; }
     else { qtot.textContent=''; }
   }
 }
 
 function getSel(){
   const items=[];
-  allProds().forEach(p=>{
-    p.col.forEach(color=>{
-      const inp=document.getElementById('qty-'+p.id+'_'+color);
-      const qty=inp?(parseInt(inp.value)||0):0;
-      if(qty>=100) items.push({prod:p, color, qty});
-    });
-  });
+  allProds().forEach(p=>{ p.col.forEach(color=>{ const inp=document.getElementById('qty-'+p.id+'_'+color); const qty=inp?(parseInt(inp.value)||0):0; if(qty>=100) items.push({prod:p, color, qty}); }); });
   return items;
 }
 
-// ─── NAVEGACIÓN ───────────────────────────────────────────
 function goStep(n){
-  [1,2,3].forEach(i=>{
-    document.getElementById('p'+i).classList.toggle('active',i===n);
-    const s=document.getElementById('st'+i);
-    s.className='step'+(i===n?' active':i<n?' done':'');
-  });
+  [1,2,3].forEach(i=>{ document.getElementById('p'+i).classList.toggle('active',i===n); const s=document.getElementById('st'+i); s.className='step'+(i===n?' active':i<n?' done':''); });
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -806,23 +603,14 @@ function goStep2(){
     if(qty>0 && qty<100) incompletas.push(`${group} ${p.v} ${clabel} — pediste ${qty} uds, mínimo 100`);
     else if(stock>0 && qty>stock) incompletas.push(`${group} ${p.v} ${clabel} — solo hay ${fmtN(stock)} disponibles`);
   }));
-  if(incompletas.length){
-    err.style.display='block';
-    err.innerHTML='<strong>Ajusta estas referencias antes de continuar:</strong><br>'+incompletas.map(i=>'▸ '+i).join('<br>');
-    return;
-  }
-  if(!sel.length && !pedidoMuestras){
-    err.style.display='block'; err.textContent='Agrega al menos un producto con mínimo 100 unidades.'; return;
-  }
+  if(incompletas.length){ err.style.display='block'; err.innerHTML='<strong>Ajusta estas referencias antes de continuar:</strong><br>'+incompletas.map(i=>'▸ '+i).join('<br>'); return; }
+  if(!sel.length && !pedidoMuestras){ err.style.display='block'; err.textContent='Agrega al menos un producto con mínimo 100 unidades.'; return; }
   err.style.display='none'; goStep(2);
 }
 
 function setTipo(t){
   tipo=t;
-  ['nat','jur'].forEach(x=>{
-    document.getElementById('tc-'+x).classList.toggle('tsel',x===t);
-    document.getElementById('tc-'+x).querySelector('.ttitle').style.color=x===t?'var(--green)':'var(--t2)';
-  });
+  ['nat','jur'].forEach(x=>{ document.getElementById('tc-'+x).classList.toggle('tsel',x===t); document.getElementById('tc-'+x).querySelector('.ttitle').style.color=x===t?'var(--green)':'var(--t2)'; });
   document.getElementById('form-nat').style.display=t==='nat'?'block':'none';
   document.getElementById('form-jur').style.display=t==='jur'?'block':'none';
   document.getElementById('bloque-id-nat').style.display=t==='nat'?'block':'none';
@@ -847,8 +635,7 @@ function toggleMuestras(){
 }
 
 function req(fid,iid){
-  const f=document.getElementById(fid); const el=document.getElementById(iid);
-  const v=el?el.value.trim():'';
+  const f=document.getElementById(fid); const el=document.getElementById(iid); const v=el?el.value.trim():'';
   if(!f) return true;
   if(!v){ f.classList.add('ferr'); f.querySelector('.errmsg').style.display='block'; return false; }
   f.classList.remove('ferr'); f.querySelector('.errmsg').style.display='none'; return true;
@@ -856,68 +643,35 @@ function req(fid,iid){
 
 function goStep3(){
   let ok=true;
-  if(tipo==='nat'){
-    ['f-ced:ced','f-nom:nom','f-tel:tel','f-dir:dir','f-bar:bar','f-ciu:ciu','f-dep:dep','f-eml:eml'].forEach(p=>{
-      const [fid,iid]=p.split(':'); if(!req(fid,iid)) ok=false;
-    });
-  } else {
-    ['f-rut:rut','f-rsoc:rsoc','f-rec:rec','f-telj:telj','f-dirj:dirj','f-barj:barj','f-ciuj:ciuj','f-depj:depj'].forEach(p=>{
-      const [fid,iid]=p.split(':'); if(!req(fid,iid)) ok=false;
-    });
-  }
-  if(envioDif){
-    ['f-env-nom:env-nom','f-env-tel:env-tel','f-env-dir:env-dir','f-env-bar:env-bar','f-env-ciu:env-ciu','f-env-dep:env-dep'].forEach(p=>{
-      const [fid,iid]=p.split(':'); if(!req(fid,iid)) ok=false;
-    });
-  }
+  if(tipo==='nat'){ ['f-ced:ced','f-nom:nom','f-tel:tel','f-dir:dir','f-bar:bar','f-ciu:ciu','f-dep:dep','f-eml:eml'].forEach(p=>{ const [fid,iid]=p.split(':'); if(!req(fid,iid)) ok=false; }); }
+  else { ['f-rut:rut','f-rsoc:rsoc','f-rec:rec','f-telj:telj','f-dirj:dirj','f-barj:barj','f-ciuj:ciuj','f-depj:depj'].forEach(p=>{ const [fid,iid]=p.split(':'); if(!req(fid,iid)) ok=false; }); }
+  if(envioDif){ ['f-env-nom:env-nom','f-env-tel:env-tel','f-env-dir:env-dir','f-env-bar:env-bar','f-env-ciu:env-ciu','f-env-dep:env-dep'].forEach(p=>{ const [fid,iid]=p.split(':'); if(!req(fid,iid)) ok=false; }); }
   if(!ok) return;
-  guardarCliente();
-  buildResumen();
-  goStep(3);
+  guardarCliente(); buildResumen(); goStep(3);
 }
 
-// ─── DATOS ENVÍO ──────────────────────────────────────────
 function getEnvio(){
   if(envioDif) return { nombre:g('env-nom'), tel:g('env-tel'), dir:g('env-dir')+(g('env-bar')?', '+g('env-bar'):''), ciudad:g('env-ciu')+(g('env-dep')?', '+g('env-dep'):''), barrio:g('env-bar') };
   if(tipo==='nat') return { nombre:g('nom'), tel:g('tel'), dir:g('dir')+(g('bar')?', '+g('bar'):''), ciudad:g('ciu')+(g('dep')?', '+g('dep'):''), barrio:g('bar') };
   return { nombre:g('rec'), tel:g('telj'), dir:g('dirj')+(g('barj')?', '+g('barj'):''), ciudad:g('ciuj')+(g('depj')?', '+g('depj'):''), barrio:g('barj') };
 }
-function getNombre(){ return tipo==='nat'?g('nom'):(g('rsoc')||g('rec')); }
 function getContacto(){ return tipo==='nat'?g('nom'):g('rec'); }
 function getEmpresa(){ return tipo==='nat'?(g('neg')||g('nom')):g('rsoc'); }
 function getTel(){ return tipo==='nat'?g('tel'):g('telj'); }
 
-// ─── RESUMEN ─────────────────────────────────────────────
 function buildResumen(){
-  const sel=getSel();
-  const folio=genFolio();
+  const sel=getSel(); const folio=genFolio();
   document.getElementById('folio-display').textContent=folio;
-
-  const IVA=0.19;
-  let subBase=0;
+  const IVA=0.19; let subBase=0;
   let itemsHTML=sel.map(s=>{
     const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP';
     const clabel=s.color==='blanco'?'Blanco':'Transparente';
-    const precio=s.prod.t[listaActiva];
-    const subtotal=s.qty*precio;
-    subBase+=subtotal;
+    const precio=s.prod.t[listaActiva]; const subtotal=s.qty*precio; subBase+=subtotal;
     const listaLabel=promoOn?'precio especial':LISTA_NAMES[listaActiva];
-    return `<div class="srow">
-      <div class="srl">${group} ${s.prod.v} · ${clabel}
-        <small>${fmtN(s.qty)} uds × ${fmt(precio)} s/IVA · ${listaLabel}</small>
-      </div>
-      <div class="srr">${fmt(subtotal)}</div>
-    </div>`;
+    return `<div class="srow"><div class="srl">${group} ${s.prod.v} · ${clabel}<small>${fmtN(s.qty)} uds × ${fmt(precio)} s/IVA · ${listaLabel}</small></div><div class="srr">${fmt(subtotal)}</div></div>`;
   }).join('');
-
-  if(pedidoMuestras){
-    itemsHTML+=`<div class="srow">
-      <div class="srl">🧪 Kit de Muestras<small>Muestrario completo · Transporte incluido</small></div>
-      <div class="srr" style="color:var(--acc)">${fmt(KIT_PRECIO)}</div>
-    </div>`;
-  }
-  document.getElementById('sum-items').innerHTML = itemsHTML || '<div class="srow"><div class="srl" style="color:var(--t3)">Solo kit de muestras</div></div>';
-
+  if(pedidoMuestras) itemsHTML+=`<div class="srow"><div class="srl">🧪 Kit de Muestras<small>Muestrario completo · Transporte incluido</small></div><div class="srr" style="color:var(--acc)">${fmt(KIT_PRECIO)}</div></div>`;
+  document.getElementById('sum-items').innerHTML=itemsHTML||'<div class="srow"><div class="srl" style="color:var(--t3)">Solo kit de muestras</div></div>';
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
   const flete=pedidoMuestras && totalUds===0?0:calcFlete(sel);
@@ -926,42 +680,20 @@ function buildResumen(){
   const cajasResiduo=Math.ceil(residuoUds/200);
   const cajas=totalPacas>0?totalPacas:Math.ceil(totalUds/200);
   const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
-
   document.getElementById('s-sub').textContent=fmt(subBase);
   document.getElementById('s-iva').textContent=fmt(iva);
-  document.getElementById('s-flete').textContent=fmt(flete)+(pedidoMuestras && totalUds===0?'+Kit '+fmt(KIT_PRECIO):'');
+  document.getElementById('s-flete').textContent=fmt(flete);
   const cajasLabel=totalPacas>0?(totalPacas+` paca${totalPacas>1?'s':''}${cajasResiduo>0?' + '+cajasResiduo+' caja resid.':''}`):cajas?`(${cajas} caja${cajas>1?'s':''})`:'' ;
   document.getElementById('s-cajas').textContent=cajasLabel?`(${cajasLabel})`:'';
   document.getElementById('s-total').textContent=fmt(grand);
-  document.getElementById('s-total').textContent=fmt(grand);
-
-  const envio=getEnvio();
-  const contacto=getContacto();
-  const empresa=getEmpresa();
-  const tel=getTel();
-
-  const clienteRows=tipo==='nat'
-    ?[
-      ['Empresa / Negocio', empresa],
-      ['Contacto', contacto],
-      ['Cédula', g('ced')],
-      ['Celular', tel],
-      ['Correo', g('eml')]
-     ]
-    :[
-      ['Empresa', empresa],
-      ['NIT', g('rut')],
-      ['Contacto', contacto],
-      ['Celular', tel]
-     ];
-
+  const envio=getEnvio(); const contacto=getContacto(); const empresa=getEmpresa(); const tel=getTel();
+  const clienteRows=tipo==='nat'?[['Empresa / Negocio',empresa],['Contacto',contacto],['Cédula',g('ced')],['Celular',tel],['Correo',g('eml')]]:[['Empresa',empresa],['NIT',g('rut')],['Contacto',contacto],['Celular',tel]];
   document.getElementById('sum-cliente').innerHTML=
     clienteRows.map(([l,v])=>`<div class="srow"><div class="srl">${l}</div><div class="srr">${v||'—'}</div></div>`).join('')+
     `<div class="srow"><div class="srl">Dirección de entrega<small>Barrio: ${envio.barrio||'—'}</small></div><div class="srr" style="text-align:right;max-width:60%">${envio.dir}<small>${envio.ciudad}</small></div></div>`+
     (envioDif?`<div class="srow"><div class="srl" style="color:var(--green);font-size:11px">⚠ Envío a dirección diferente al titular</div><div class="srr"></div></div>`:'')+
     (g('ali')?`<div class="srow"><div class="srl">¿Qué envasa?</div><div class="srr">${g('ali')}</div></div>`:'')+
     (g('notas')?`<div class="srow"><div class="srl">Notas</div><div class="srr" style="text-align:right;max-width:60%">${g('notas')}</div></div>`:'');
-
   document.getElementById('acuerdo-section').style.display='block';
   document.getElementById('confirmado-box').style.display='none';
   document.getElementById('btn-acuerdo').disabled=false;
@@ -970,7 +702,6 @@ function buildResumen(){
   document.getElementById('sheets-sending').style.display='none';
 }
 
-// ─── CONFIRMAR ────────────────────────────────────────────
 async function confirmarAcuerdo(){
   const btn=document.getElementById('btn-acuerdo');
   btn.disabled=true; btn.style.opacity='.6';
@@ -983,68 +714,35 @@ async function confirmarAcuerdo(){
   notificarJose();
 }
 
-// ─── NOTIFICAR A JOSÉ ─────────────────────────────────────
 function notificarJose(){
-  const sel=getSel();
-  const contacto=getContacto();
-  const empresa=getEmpresa();
-  const tel=getTel();
-  const envio=getEnvio();
+  const sel=getSel(); const contacto=getContacto(); const empresa=getEmpresa(); const tel=getTel(); const envio=getEnvio();
   const folio=document.getElementById('folio-display').textContent;
-  const IVA=0.19;
-  let subBase=0;
+  const IVA=0.19; let subBase=0;
   sel.forEach(s=>{ subBase+=s.qty*s.prod.t[listaActiva]; });
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
   const flete=pedidoMuestras && sel.length===0 ? 0 : calcFlete(sel);
   const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
   const comision=calcComision(sel);
-
-  let msg=`🛒 NUEVO PEDIDO CONFIRMADO · ${folio}\n`;
-  msg+=`━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-  msg+=`Empresa: ${empresa}\n`;
-  msg+=`Contacto: ${contacto} · ${tel}\n`;
-  if(tipo==='nat') msg+=`Cédula: ${g('ced')}\n`;
-  else msg+=`NIT: ${g('rut')}\n`;
+  let msg=`🛒 NUEVO PEDIDO CONFIRMADO · ${folio}\n━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`Empresa: ${empresa}\nContacto: ${contacto} · ${tel}\n`;
+  if(tipo==='nat') msg+=`Cédula: ${g('ced')}\n`; else msg+=`NIT: ${g('rut')}\n`;
   msg+=`Entrega: ${envio.dir}, ${envio.barrio?'Barrio: '+envio.barrio+', ':''}${envio.ciudad}\n\n`;
-  sel.forEach(s=>{
-    const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP';
-    msg+=`▸ ${group} ${s.prod.v} (${s.color==='blanco'?'Blanco':'Transparente'}): ${fmtN(s.qty)} uds\n`;
-  });
+  sel.forEach(s=>{ const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP'; msg+=`▸ ${group} ${s.prod.v} (${s.color==='blanco'?'Blanco':'Transparente'}): ${fmtN(s.qty)} uds\n`; });
   if(pedidoMuestras) msg+=`▸ Kit de muestras · ${fmt(KIT_PRECIO)}\n`;
-  msg+=`\nTOTAL: ${fmt(grand)}\n`;
-  msg+=`Comisión estimada: ${fmt(comision)}\n`;
-  msg+=`\n✅ El cliente aceptó la liquidación.\nEnvía las formas de pago.`;
-
+  msg+=`\nTOTAL: ${fmt(grand)}\nComisión estimada: ${fmt(comision)}\n\n✅ El cliente aceptó la liquidación.\nEnvía las formas de pago.`;
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
 }
 
-// ─── CÁLCULO COMISIÓN ─────────────────────────────────────
 function calcComision(sel){
-  // Comisión = precio vendido - precio L2 (costo base)
-  let com=sel.reduce((a,s)=>{
-    const precioVenta=s.prod.t[listaActiva];
-    const precioBase=s.prod.t[1]; // L2 Pyme es el precio base
-    return a+s.qty*(precioVenta - precioBase);
-  },0);
-  // Kit de muestras: comisión solo si NO es L5 Convenio
+  let com=sel.reduce((a,s)=>{ const precioVenta=s.prod.t[listaActiva]; const precioBase=s.prod.t[1]; return a+s.qty*(precioVenta-precioBase); },0);
   if(pedidoMuestras && listaActiva !== 4) com+=KIT_COMISION;
   return Math.abs(Math.round(com));
 }
 
-// ─── GOOGLE SHEETS ────────────────────────────────────────
 async function registrarEnSheets(){
-  if(!CONFIG.sheets_webhook || CONFIG.sheets_webhook.includes('TU_')) return;
-  const sel=getSel();
-  const IVA=0.19;
-  let subBase=0;
-  const productos=sel.map(s=>{
-    const precio=s.prod.t[listaActiva];
-    const subtotal=s.qty*precio;
-    subBase+=subtotal;
-    const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP';
-    return { ref:group+' '+s.prod.v, color:s.color==='blanco'?'Blanco':'Transparente', qty:s.qty, precio, subtotal };
-  });
+  const sel=getSel(); const IVA=0.19; let subBase=0;
+  const productos=sel.map(s=>{ const precio=s.prod.t[listaActiva]; const subtotal=s.qty*precio; subBase+=subtotal; const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP'; return { ref:group+' '+s.prod.v, color:s.color==='blanco'?'Blanco':'Transparente', qty:s.qty, precio, subtotal }; });
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
   const flete=pedidoMuestras && totalUds===0 ? 0 : calcFlete(sel);
@@ -1053,56 +751,36 @@ async function registrarEnSheets(){
   const envio=getEnvio();
   const folio=document.getElementById('folio-display').textContent;
   const now=new Date();
-
   const params=new URLSearchParams({
     folio,
     fecha: now.toLocaleDateString('es-CO',{day:'2-digit',month:'2-digit',year:'numeric'}),
     hora:  now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}),
-    // EMPRESA / NEGOCIO separado del CONTACTO
-    empresa: getEmpresa(),
-    contacto: getContacto(),
-    celular: getTel(),
-    cedula_nit: tipo==='nat'?g('ced'):g('rut'),
-    tipo_cliente: tipo,
+    empresa: getEmpresa(), contacto: getContacto(), celular: getTel(),
+    cedula_nit: tipo==='nat'?g('ced'):g('rut'), tipo_cliente: tipo,
     correo: tipo==='nat'?g('eml'):g('emlj'),
-    // Datos dirección (con barrio separado)
     dir_factura: tipo==='nat'?g('dir'):g('dirj'),
     barrio_factura: tipo==='nat'?g('bar'):g('barj'),
     ciudad_factura: tipo==='nat'?g('ciu'):g('ciuj'),
     dep_factura: tipo==='nat'?g('dep'):g('depj'),
-    // Datos envío (con barrio)
-    envio_nombre: envio.nombre,
-    envio_tel: envio.tel,
-    envio_dir: envio.dir,
-    envio_barrio: envio.barrio,
-    envio_ciudad: envio.ciudad,
+    envio_nombre: envio.nombre, envio_tel: envio.tel, envio_dir: envio.dir,
+    envio_barrio: envio.barrio, envio_ciudad: envio.ciudad,
     envio_diferente: envioDif?'SI':'NO',
-    // Pedido
-    alimento: g('ali'),
-    notas: g('notas'),
-    productos: JSON.stringify(productos),
-    total_uds: totalUds,
-    subtotal_sin_iva: subBase,
-    iva,
-    flete,
-    total: grand,
-    comision,
-    lista_idx: listaActiva,
-    lista_nombre: LISTA_NAMES[listaActiva],
+    alimento: g('ali'), notas: g('notas'),
+    productos: JSON.stringify(productos), total_uds: totalUds,
+    subtotal_sin_iva: subBase, iva, flete, total: grand, comision,
+    lista_idx: listaActiva, lista_nombre: LISTA_NAMES[listaActiva],
     promo_code: promoOn?document.getElementById('pinp').value.trim().toUpperCase():'',
     kit_muestras: pedidoMuestras?'SI':'NO',
     kit_muestras_precio: pedidoMuestras?KIT_PRECIO:0,
     kit_muestras_comision: pedidoMuestras?KIT_COMISION:0,
-    estado: 'Pendiente'  // Estado de pago inicial
+    estado: 'Pendiente'
   });
-
   try{
     await fetch(CONFIG.sheets_webhook+'?'+params.toString(), { method:'GET', mode:'no-cors' });
     await new Promise(r=>setTimeout(r,1200));
   }catch(e){ console.log('Sheets error:', e); }
 }
 
-// ─── PROMO ────────────────────────────────────────────────
 function togglePromo(){
   promoOpen=!promoOpen;
   document.getElementById('promobox').classList.toggle('open',promoOpen);
@@ -1110,8 +788,7 @@ function togglePromo(){
 function applyPromo(){
   if(promoOn) return;
   const code=document.getElementById('pinp').value.trim().toUpperCase();
-  const inp=document.getElementById('pinp');
-  const msg=document.getElementById('pmsg');
+  const inp=document.getElementById('pinp'); const msg=document.getElementById('pmsg');
   inp.classList.remove('perr');
   if(!code){ inp.classList.add('perr'); return; }
   if(PROMOS[code]){
@@ -1124,13 +801,9 @@ function applyPromo(){
     document.getElementById('picon').textContent='✓';
     document.getElementById('ptitle').textContent='Código aplicado';
     document.getElementById('psub').textContent='Precio especial activo en tu solicitud';
-  } else {
-    msg.className='pmsg fail'; msg.textContent='Código no válido. Contacta a tu asesor.';
-    inp.classList.add('perr');
-  }
+  } else { msg.className='pmsg fail'; msg.textContent='Código no válido. Contacta a tu asesor.'; inp.classList.add('perr'); }
 }
 
-// ─── RESET ────────────────────────────────────────────────
 function resetAll(){
   allProds().forEach(p=>p.col.forEach(color=>{
     const inp=document.getElementById('qty-'+p.id+'_'+color); if(inp) inp.value='';
@@ -1138,21 +811,14 @@ function resetAll(){
     const card=document.getElementById('card-'+p.id); if(card) card.classList.remove('sel');
     const qtot=document.getElementById('qtot-'+p.id); if(qtot) qtot.textContent='';
   }));
-  ['nom','tel','ced','neg','dir','bar','ciu','dep','eml','rut','rsoc','rec','telj','dirj','barj','ciuj','depj','emlj','ali','notas','env-nom','env-tel','env-dir','env-bar','env-ciu','env-dep'].forEach(id=>{
-    const e=document.getElementById(id); if(e) e.value='';
-  });
-  // Limpiar botones de envase (.ali-btn)
-  document.querySelectorAll('.ali-btn.on').forEach(b=>{
-    b.classList.remove('on');
-    if(b.dataset.val==='Otro') document.getElementById('ali-otro').style.display='none';
-  });
+  ['nom','tel','ced','neg','dir','bar','ciu','dep','eml','rut','rsoc','rec','telj','dirj','barj','ciuj','depj','emlj','ali','notas','env-nom','env-tel','env-dir','env-bar','env-ciu','env-dep'].forEach(id=>{ const e=document.getElementById(id); if(e) e.value=''; });
+  document.querySelectorAll('.ali-btn.on').forEach(b=>{ b.classList.remove('on'); if(b.dataset.val==='Otro') document.getElementById('ali-otro').style.display='none'; });
   document.getElementById('errbanner').style.display='none';
   if(envioDif) toggleEnvioDif();
   if(pedidoMuestras) toggleMuestras();
   if(promoOn){
     promoOn=false; promoOpen=false; listaActiva=1;
-    const pb=document.getElementById('promobox');
-    pb.classList.remove('unlocked','open');
+    const pb=document.getElementById('promobox'); pb.classList.remove('unlocked','open');
     const inp=document.getElementById('pinp'); inp.disabled=false; inp.value=''; inp.classList.remove('perr');
     document.querySelector('.pbtn').textContent='Aplicar'; document.querySelector('.pbtn').style.background='';
     document.getElementById('picon').textContent='🎁';
@@ -1160,72 +826,39 @@ function resetAll(){
     document.getElementById('psub').textContent='Ingresa tu código para ver el precio mayorista';
     document.getElementById('pmsg').className='pmsg';
   }
-  setTipo('nat');
-  goStep(1);
+  setTipo('nat'); goStep(1);
 }
 
-// ─── MEMORIA LOCAL (clientes recurrentes) ─────────────────
 const DB_KEY='sp_clientes_v2';
 function getClientesDB(){ try{ return JSON.parse(localStorage.getItem(DB_KEY)||'{}'); }catch(e){ return {}; } }
 function saveClientesDB(db){ try{ localStorage.setItem(DB_KEY,JSON.stringify(db)); }catch(e){} }
-
-function limpiarAviso(){
-  const av=document.getElementById('aviso-cliente'); if(av) av.style.display='none';
-}
+function limpiarAviso(){ const av=document.getElementById('aviso-cliente'); if(av) av.style.display='none'; }
 function buscarCliente(){
   const id=tipo==='nat'?g('ced'):g('rut');
   if(!id||id.length<5) return;
-  const db=getClientesDB();
-  const cliente=db[id]; if(!cliente) return;
+  const db=getClientesDB(); const cliente=db[id]; if(!cliente) return;
   if(tipo==='nat') ['nom','neg','tel','eml','dir','bar','ciu','dep'].forEach(f=>{ const el=document.getElementById(f); if(el&&cliente[f]) el.value=cliente[f]; });
   else ['rsoc','rec','telj','emlj','dirj','barj','ciuj','depj'].forEach(f=>{ const el=document.getElementById(f); if(el&&cliente[f]) el.value=cliente[f]; });
   const av=document.getElementById('aviso-cliente');
-  if(av){
-    av.style.display='flex';
-    document.getElementById('aviso-nombre').textContent='¡Bienvenido de nuevo, '+(cliente.empresa||cliente.nom||cliente.rsoc||'cliente')+'!';
-    document.getElementById('aviso-sub').textContent='Datos cargados automáticamente · Último pedido: '+(cliente.fecha||'');
-  }
+  if(av){ av.style.display='flex'; document.getElementById('aviso-nombre').textContent='¡Bienvenido de nuevo, '+(cliente.empresa||cliente.nom||cliente.rsoc||'cliente')+'!'; document.getElementById('aviso-sub').textContent='Datos cargados automáticamente · Último pedido: '+(cliente.fecha||''); }
 }
 function guardarCliente(){
   const id=tipo==='nat'?g('ced'):g('rut'); if(!id) return;
-  const db=getClientesDB();
-  const now=new Date().toLocaleDateString('es-CO');
-  const actual=db[id]||{};
-  if(tipo==='nat'){
-    const nuevo={tipo:'nat',fecha:now};
-    ['nom','neg','tel','eml','dir','bar','ciu','dep'].forEach(f=>{ const v=g(f); if(v) nuevo[f]=v; });
-    db[id]=Object.assign({},actual,nuevo);
-    db[id].empresa=nuevo.neg||nuevo.nom||actual.empresa||'';
-  } else {
-    const nuevo={tipo:'jur',fecha:now};
-    ['rsoc','rec','telj','emlj','dirj','barj','ciuj','depj'].forEach(f=>{ const v=g(f); if(v) nuevo[f]=v; });
-    db[id]=Object.assign({},actual,nuevo);
-    db[id].empresa=nuevo.rsoc||actual.empresa||'';
-  }
+  const db=getClientesDB(); const now=new Date().toLocaleDateString('es-CO'); const actual=db[id]||{};
+  if(tipo==='nat'){ const nuevo={tipo:'nat',fecha:now}; ['nom','neg','tel','eml','dir','bar','ciu','dep'].forEach(f=>{ const v=g(f); if(v) nuevo[f]=v; }); db[id]=Object.assign({},actual,nuevo); db[id].empresa=nuevo.neg||nuevo.nom||actual.empresa||''; }
+  else { const nuevo={tipo:'jur',fecha:now}; ['rsoc','rec','telj','emlj','dirj','barj','ciuj','depj'].forEach(f=>{ const v=g(f); if(v) nuevo[f]=v; }); db[id]=Object.assign({},actual,nuevo); db[id].empresa=nuevo.rsoc||actual.empresa||''; }
   saveClientesDB(db);
 }
 
-// ─── MAKE WEBHOOK ─────────────────────────────────────────
 async function enviarAMake(){
   try{
-    const r=await fetch('https://hook.us2.make.com/wnlk1re4ubkhbkvjdde48v7mb483vsvd',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        empresa: getEmpresa(),
-        contacto: getContacto(),
-        celular: getTel(),
-        ciudad: tipo==='nat'?g('ciu'):g('ciuj'),
-        barrio: tipo==='nat'?g('bar'):g('barj'),
-        empresa_nombre: 'Smart Packaging Colombia',
-        total: parseFloat(document.getElementById('s-total').textContent.replace(/[^0-9]/g,'')),
-        fecha: new Date().toLocaleString('es-CO')
-      })
+    await fetch('https://hook.us2.make.com/wnlk1re4ubkhbkvjdde48v7mb483vsvd',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ empresa:getEmpresa(), contacto:getContacto(), celular:getTel(), ciudad:tipo==='nat'?g('ciu'):g('ciuj'), barrio:tipo==='nat'?g('bar'):g('barj'), empresa_nombre:'Smart Packaging Colombia', total:parseFloat(document.getElementById('s-total').textContent.replace(/[^0-9]/g,'')), fecha:new Date().toLocaleString('es-CO') })
     });
   }catch(e){ console.log(e); }
 }
 
-// ─── INIT ─────────────────────────────────────────────────
 buildGrid('fp','grid-fp');
 buildGrid('pm','grid-pm');
 loadInventory();
