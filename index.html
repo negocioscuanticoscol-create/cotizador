@@ -392,9 +392,6 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
 <div class="footer">SMART PACKAGING COLOMBIA · 3124124034 · @smartpackagingcol</div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// CONFIGURACIÓN CENTRAL — v8 · Script v7
-// ═══════════════════════════════════════════════════════
 const CONFIG = {
   empresa:        'Smart Packaging Colombia',
   wa_ventas:      '573124124034',
@@ -734,12 +731,22 @@ function notificarJose(){
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
 }
 
+// ✅ FIX: calcComision corregida
 function calcComision(sel){
-  let com=sel.reduce((a,s)=>{ const precioVenta=s.prod.t[listaActiva]; const precioBase=s.prod.t[4]; return a+s.qty*(precioVenta-precioBase); },0);
-  if(pedidoMuestras && listaActiva !== 4) com+=KIT_COMISION;
-  return Math.abs(Math.round(com));
+  if(listaActiva === 4){
+    return pedidoMuestras ? KIT_COMISION : 0;
+  }
+  let com = sel.reduce((a, s) => {
+    const precioVenta = s.prod.t[listaActiva];
+    const precioBase  = s.prod.t[4];
+    const diff = precioVenta - precioBase;
+    return a + s.qty * diff;
+  }, 0);
+  if(pedidoMuestras) com += KIT_COMISION;
+  return Math.max(0, Math.round(com));
 }
 
+// ✅ FIX: registrarEnSheets con valores enteros
 async function registrarEnSheets(){
   const sel=getSel(); const IVA=0.19; let subBase=0;
   const productos=sel.map(s=>{ const precio=s.prod.t[listaActiva]; const subtotal=s.qty*precio; subBase+=subtotal; const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP'; return { ref:group+' '+s.prod.v, color:s.color==='blanco'?'Blanco':'Transparente', qty:s.qty, precio, subtotal }; });
@@ -747,7 +754,6 @@ async function registrarEnSheets(){
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
   const flete=pedidoMuestras && totalUds===0 ? 0 : calcFlete(sel);
   const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
-  const comision=calcComision(sel);
   const envio=getEnvio();
   const folio=document.getElementById('folio-display').textContent;
   const now=new Date();
@@ -767,7 +773,11 @@ async function registrarEnSheets(){
     envio_diferente: envioDif?'SI':'NO',
     alimento: g('ali'), notas: g('notas'),
     productos: JSON.stringify(productos), total_uds: totalUds,
-    subtotal_sin_iva: subBase, iva, flete, total: grand, comision,
+    subtotal_sin_iva: Math.round(subBase),
+    iva: Math.round(iva),
+    flete: Math.round(flete),
+    total: Math.round(grand),
+    comision: Math.round(calcComision(sel)),
     lista_idx: listaActiva, lista_nombre: LISTA_NAMES[listaActiva],
     promo_code: promoOn?document.getElementById('pinp').value.trim().toUpperCase():'',
     kit_muestras: pedidoMuestras?'SI':'NO',
