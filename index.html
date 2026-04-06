@@ -259,7 +259,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
   </div>
   <div class="slabel" style="margin-top:14px">// Kit especial</div>
   <div class="kit-muestras-card" id="card-muestras" onclick="toggleMuestras()">
-    <div class="km-top"><div class="km-title">🧪 Kit de Muestras</div><div class="km-badge">$60.000</div></div>
+    <div class="km-top"><div class="km-title">🧪 Kit de Muestras</div><div class="km-badge" id="kit-badge">$60.000</div></div>
     <div class="km-desc">Muestrario completo de referencias Flexipack y PetMulti. Transporte incluido a todo Colombia. Ideal para conocer el producto antes de tu primer pedido.</div>
     <div class="km-sel" id="muestras-sel">✓ Kit de muestras agregado a tu pedido</div>
   </div>
@@ -407,12 +407,14 @@ const CONFIG = {
 const WA = CONFIG.wa_ventas;
 
 const PROMOS = {
-  'MAYORISTA2026':   { lista: 2, msg: 'Código válido — precio mayorista desbloqueado ✓' },
-  'DISTRIBUIDOR2026':{ lista: 3, msg: 'Código válido — precio distribuidor desbloqueado ✓' },
-  'CONVENIO2026':    { lista: 4, msg: 'Código válido — precio convenio desbloqueado ✓' }
+  'PYME2026':        { lista: 1, msg: 'Código válido — precio pyme desbloqueado ✓', kitGratis: false },
+  'MAYORISTA2026':   { lista: 2, msg: 'Código válido — precio mayorista desbloqueado ✓', kitGratis: false },
+  'DISTRIBUIDOR2026':{ lista: 3, msg: 'Código válido — precio distribuidor desbloqueado ✓', kitGratis: false },
+  'CONVENIO2026':    { lista: 4, msg: 'Código válido — precio convenio desbloqueado ✓', kitGratis: false },
+  'L1MUESTRAS':      { lista: 0, msg: 'Código válido — kit de muestras sin costo desbloqueado ✓', kitGratis: true }
 };
 
-let promoOn = false, promoOpen = false, listaActiva = 1;
+let promoOn = false, promoOpen = false, listaActiva = 0;
 
 const CAT = {
   fp: [
@@ -441,7 +443,13 @@ const allProds = () => [...CAT.fp, ...CAT.pm];
 let tipo = 'nat', envioDif = false, pedidoMuestras = false;
 let inventory = {};
 
-function fmt(n){ return '$\u202f'+Math.round(n).toLocaleString('es-CO',{useGrouping:true})+'\u202fCOP'; }
+function getKitPrecio(){
+  if(promoOn){
+    const code=document.getElementById('pinp').value.trim().toUpperCase();
+    if(PROMOS[code]&&PROMOS[code].kitGratis) return 0;
+  }
+  return KIT_PRECIO;
+}
 function fmtN(n){ return Math.round(n).toLocaleString('es-CO'); }
 function g(id){ const e=document.getElementById(id); return e?e.value.trim():''; }
 function genFolio(){
@@ -670,7 +678,7 @@ function buildResumen(){
     const listaLabel=promoOn?'precio especial':LISTA_NAMES[listaActiva];
     return `<div class="srow"><div class="srl">${group} ${s.prod.v} · ${clabel}<small>${fmtN(s.qty)} uds × ${fmt(precio)} s/IVA · ${listaLabel}</small></div><div class="srr">${fmt(subtotal)}</div></div>`;
   }).join('');
-  if(pedidoMuestras) itemsHTML+=`<div class="srow"><div class="srl">🧪 Kit de Muestras<small>Muestrario completo · Transporte incluido</small></div><div class="srr" style="color:var(--acc)">${fmt(KIT_PRECIO)}</div></div>`;
+  if(pedidoMuestras) itemsHTML+=`<div class="srow"><div class="srl">🧪 Kit de Muestras<small>Muestrario completo · Transporte incluido</small></div><div class="srr" style="color:var(--acc)">${fmt(getKitPrecio())}</div></div>`;
   document.getElementById('sum-items').innerHTML=itemsHTML||'<div class="srow"><div class="srl" style="color:var(--t3)">Solo kit de muestras</div></div>';
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
@@ -679,7 +687,7 @@ function buildResumen(){
   const residuoUds=sel.reduce((a,s)=>a+(s.qty%s.prod.pk),0);
   const cajasResiduo=Math.ceil(residuoUds/200);
   const cajas=totalPacas>0?totalPacas:Math.ceil(totalUds/200);
-  const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
+  const grand=subBase+iva+flete+(pedidoMuestras?getKitPrecio():0);
   document.getElementById('s-sub').textContent=fmt(subBase);
   document.getElementById('s-iva').textContent=fmt(iva);
   document.getElementById('s-flete').textContent=fmt(flete);
@@ -722,14 +730,14 @@ function notificarJose(){
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
   const flete=pedidoMuestras && sel.length===0 ? 0 : calcFlete(sel);
-  const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
+  const grand=subBase+iva+flete+(pedidoMuestras?getKitPrecio():0);
   const comision=calcComision(sel);
   let msg=`🛒 NUEVO PEDIDO CONFIRMADO · ${folio}\n━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
   msg+=`Empresa: ${empresa}\nContacto: ${contacto} · ${tel}\n`;
   if(tipo==='nat') msg+=`Cédula: ${g('ced')}\n`; else msg+=`NIT: ${g('rut')}\n`;
   msg+=`Entrega: ${envio.dir}, ${envio.barrio?'Barrio: '+envio.barrio+', ':''}${envio.ciudad}\n\n`;
   sel.forEach(s=>{ const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP'; msg+=`▸ ${group} ${s.prod.v} (${s.color==='blanco'?'Blanco':'Transparente'}): ${fmtN(s.qty)} uds\n`; });
-  if(pedidoMuestras) msg+=`▸ Kit de muestras · ${fmt(KIT_PRECIO)}\n`;
+  if(pedidoMuestras) msg+=`▸ Kit de muestras · ${fmt(getKitPrecio())}\n`;
   msg+=`\nTOTAL: ${fmt(grand)}\nComisión estimada: ${fmt(comision)}\n\n✅ El cliente aceptó la liquidación.\nEnvía las formas de pago.`;
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
 }
@@ -752,7 +760,7 @@ async function registrarEnSheets(){
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
   const flete=pedidoMuestras && totalUds===0 ? 0 : calcFlete(sel);
-  const grand=subBase+iva+flete+(pedidoMuestras?KIT_PRECIO:0);
+  const grand=subBase+iva+flete+(pedidoMuestras?getKitPrecio():0);
   const envio=getEnvio();
   const folio=document.getElementById('folio-display').textContent;
   const now=new Date();
@@ -780,7 +788,7 @@ async function registrarEnSheets(){
     lista_idx: listaActiva, lista_nombre: LISTA_NAMES[listaActiva],
     promo_code: promoOn?document.getElementById('pinp').value.trim().toUpperCase():'',
     kit_muestras: pedidoMuestras?'SI':'NO',
-    kit_muestras_precio: pedidoMuestras?KIT_PRECIO:0,
+    kit_muestras_precio: pedidoMuestras?getKitPrecio():0,
     kit_muestras_comision: pedidoMuestras?KIT_COMISION:0,
     estado: 'Pendiente'
   });
@@ -810,6 +818,10 @@ function applyPromo(){
     document.getElementById('picon').textContent='✓';
     document.getElementById('ptitle').textContent='Código aplicado';
     document.getElementById('psub').textContent='Precio especial activo en tu solicitud';
+    // Actualizar badge kit
+    const kitBadge = document.getElementById('kit-badge');
+    if(kitBadge) kitBadge.textContent = PROMOS[code].kitGratis ? '¡GRATIS!' : '$60.000';
+    if(PROMOS[code].kitGratis && kitBadge) kitBadge.style.background='var(--green)';
   } else { msg.className='pmsg fail'; msg.textContent='Código no válido. Contacta a tu asesor.'; inp.classList.add('perr'); }
 }
 
@@ -826,13 +838,15 @@ function resetAll(){
   if(envioDif) toggleEnvioDif();
   if(pedidoMuestras) toggleMuestras();
   if(promoOn){
-    promoOn=false; promoOpen=false; listaActiva=1;
+    promoOn=false; promoOpen=false; listaActiva=0;
     const pb=document.getElementById('promobox'); pb.classList.remove('unlocked','open');
     const inp=document.getElementById('pinp'); inp.disabled=false; inp.value=''; inp.classList.remove('perr');
     document.querySelector('.pbtn').textContent='Aplicar'; document.querySelector('.pbtn').style.background='';
     document.getElementById('picon').textContent='🎁';
     document.getElementById('ptitle').textContent='¡Pon tu código de precio aquí!';
     document.getElementById('psub').textContent='Toca aquí · Ingresa tu código y ve tu precio especial';
+    const kitBadge = document.getElementById('kit-badge');
+    if(kitBadge){ kitBadge.textContent='$60.000'; kitBadge.style.background=''; }
     document.getElementById('pmsg').className='pmsg';
   }
   setTipo('nat'); goStep(1);
