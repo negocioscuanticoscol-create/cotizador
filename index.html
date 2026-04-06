@@ -66,22 +66,22 @@ a{text-decoration:none;color:inherit}
 .aviso-paca{display:inline-flex;align-items:center;gap:5px;background:#fff3cd;border:1.5px solid var(--acc);border-radius:8px;padding:5px 10px;font-size:13px;font-weight:700;color:#7a5800;margin-top:4px;line-height:1.3;}
 .aviso-min{display:inline-flex;align-items:center;gap:5px;background:var(--rl);border:1.5px solid rgba(214,48,49,.35);border-radius:8px;padding:5px 10px;font-size:13px;font-weight:700;color:var(--red);margin-top:3px;line-height:1.3;}
 
-.promo{margin:10px 12px 0;background:white;border:1.5px solid var(--bd);border-radius:var(--r);overflow:hidden;transition:border-color .2s}
-.promo.unlocked{border-color:var(--gm)}
-.promo-hdr{padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer}
-.picon{width:30px;height:30px;border-radius:8px;background:var(--al);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.promo{margin:10px 12px 0;background:white;border:2.5px solid var(--gm);border-radius:var(--rl2);overflow:hidden;transition:border-color .2s;box-shadow:0 2px 12px rgba(45,158,95,.15)}
+.promo.unlocked{border-color:var(--gm);background:var(--gl)}
+.promo-hdr{padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;background:linear-gradient(135deg,#f0fff6 0%,#ffffff 100%)}
+.picon{width:38px;height:38px;border-radius:10px;background:var(--gl);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
 .promo.unlocked .picon{background:var(--gl)}
-.ptitle{font-size:13px;font-weight:600;color:var(--t)}
-.psub{font-size:11px;color:var(--t3);margin-top:1px}
+.ptitle{font-size:16px;font-weight:800;color:var(--green);letter-spacing:-.01em}
+.psub{font-size:12px;color:var(--t3);margin-top:2px}
 .promo.unlocked .psub{color:var(--green)}
-.pbody{padding:0 14px 13px;display:none}
+.pbody{padding:0 16px 15px;display:none}
 .promo.open .pbody{display:block}
 .prow{display:flex;gap:8px}
-.pinp{flex:1;background:var(--bg);border:1.5px solid var(--bd2);border-radius:8px;color:var(--t);font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;padding:9px 13px;outline:none;letter-spacing:.1em;text-transform:uppercase}
-.pinp:focus{border-color:var(--gm)}
+.pinp{flex:1;background:var(--bg);border:2px solid var(--gm);border-radius:10px;color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;padding:12px 15px;outline:none;letter-spacing:.12em;text-transform:uppercase}
+.pinp:focus{border-color:var(--green);background:white}
 .pinp.perr{border-color:var(--red)}
-.pbtn{background:var(--dark);color:white;border:none;border-radius:8px;padding:9px 16px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
-.pmsg{font-size:12px;margin-top:7px;padding:7px 11px;border-radius:8px;display:none}
+.pbtn{background:var(--green);color:white;border:none;border-radius:10px;padding:12px 18px;font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;cursor:pointer;white-space:nowrap}
+.pmsg{font-size:13px;margin-top:8px;padding:9px 12px;border-radius:8px;display:none}
 .pmsg.ok{background:var(--gl);color:var(--green);display:block}
 .pmsg.fail{background:var(--rl);color:var(--red);display:block}
 
@@ -244,7 +244,10 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
   <div class="promo" id="promobox">
     <div class="promo-hdr" onclick="togglePromo()">
       <div class="picon" id="picon">🎁</div>
-      <div><div class="ptitle" id="ptitle">Tengo un código de precio especial</div><div class="psub" id="psub">Ingresa tu código para ver el precio mayorista</div></div>
+      <div>
+        <div class="ptitle" id="ptitle">¡Pon tu código de precio aquí!</div>
+        <div class="psub" id="psub">Toca aquí · Ingresa tu código y ve tu precio especial</div>
+      </div>
     </div>
     <div class="pbody">
       <div class="prow">
@@ -828,8 +831,8 @@ function resetAll(){
     const inp=document.getElementById('pinp'); inp.disabled=false; inp.value=''; inp.classList.remove('perr');
     document.querySelector('.pbtn').textContent='Aplicar'; document.querySelector('.pbtn').style.background='';
     document.getElementById('picon').textContent='🎁';
-    document.getElementById('ptitle').textContent='Tengo un código de precio especial';
-    document.getElementById('psub').textContent='Ingresa tu código para ver el precio mayorista';
+    document.getElementById('ptitle').textContent='¡Pon tu código de precio aquí!';
+    document.getElementById('psub').textContent='Toca aquí · Ingresa tu código y ve tu precio especial';
     document.getElementById('pmsg').className='pmsg';
   }
   setTipo('nat'); goStep(1);
