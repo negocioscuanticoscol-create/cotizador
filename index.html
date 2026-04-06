@@ -210,7 +210,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
 </div>
 
 <div class="hero">
-  <div class="htag">// COTIZADOR OFICIAL 2026 · v8</div>
+  <div class="htag">// COTIZADOR OFICIAL 2026 · v9</div>
   <h1>Cotiza tus<br><em>envases Flexipack</em></h1>
   <p>Precios reales con IVA incluido. Flete calculado. Envíos a todo Colombia en 2-3 días hábiles.</p>
   <div class="hbadges">
@@ -397,8 +397,8 @@ const CONFIG = {
   wa_ventas:      '573124124034',
   wa_bodega:      '573024967908',
   wa_contabilidad:'573236375088',
-  sheets_webhook:  'https://script.google.com/macros/s/AKfycbxP1mpNNKmTgwRIrO5BEjX21JXaGPO6mkJrZ72oXU9QiS6o6fQwg5dExM66wPtb38Np/exec',
-  sheet_inventario:'https://script.google.com/macros/s/AKfycbxP1mpNNKmTgwRIrO5BEjX21JXaGPO6mkJrZ72oXU9QiS6o6fQwg5dExM66wPtb38Np/exec?action=inventario',
+  sheets_webhook:  'https://script.google.com/macros/s/AKfycbzSuAJgi39tHyHJqn_QQYELlmt_WjlopK9Fi_DVBwkQheDp2WAm1BTKEgY2Za2XJUX4/exec',
+  sheet_inventario:'https://script.google.com/macros/s/AKfycbzSuAJgi39tHyHJqn_QQYELlmt_WjlopK9Fi_DVBwkQheDp2WAm1BTKEgY2Za2XJUX4/exec?action=inventario',
 };
 
 const WA = CONFIG.wa_ventas;
@@ -731,11 +731,8 @@ function notificarJose(){
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
 }
 
-// ✅ FIX: calcComision corregida
 function calcComision(sel){
-  if(listaActiva === 4){
-    return pedidoMuestras ? KIT_COMISION : 0;
-  }
+  if(listaActiva === 4){ return pedidoMuestras ? KIT_COMISION : 0; }
   let com = sel.reduce((a, s) => {
     const precioVenta = s.prod.t[listaActiva];
     const precioBase  = s.prod.t[4];
@@ -746,7 +743,6 @@ function calcComision(sel){
   return Math.max(0, Math.round(com));
 }
 
-// ✅ FIX: registrarEnSheets con valores enteros
 async function registrarEnSheets(){
   const sel=getSel(); const IVA=0.19; let subBase=0;
   const productos=sel.map(s=>{ const precio=s.prod.t[listaActiva]; const subtotal=s.qty*precio; subBase+=subtotal; const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP'; return { ref:group+' '+s.prod.v, color:s.color==='blanco'?'Blanco':'Transparente', qty:s.qty, precio, subtotal }; });
