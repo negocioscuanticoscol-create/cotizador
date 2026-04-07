@@ -378,6 +378,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
     <div class="field"><label>Notas adicionales</label><textarea id="notas" placeholder="Preguntas, referencias especiales, fechas..."></textarea></div>
   </div>
   <div class="bwrap">
+    <div id="errbanner2" style="display:none;background:#fff0f0;border:1px solid #d63031;border-radius:12px;padding:10px 14px;font-size:13px;color:#d63031;margin-bottom:10px"></div>
     <button class="btn btn-p" onclick="goStep3()">Ver mi cotización →</button>
     <button class="btn btn-s" onclick="goStep(1)">← Volver a productos</button>
   </div>
@@ -691,10 +692,21 @@ function req(fid,iid){
 
 function goStep3(){
   let ok=true;
-  if(tipo==='nat'){ ['f-ced:ced','f-nom:nom','f-tel:tel','f-dir:dir','f-bar:bar','f-ciu:ciu','f-dep:dep'].forEach(p=>{ const [fid,iid]=p.split(':'); if(!req(fid,iid)) ok=false; }); }
-  else { ['f-rut:rut','f-rsoc:rsoc','f-rec:rec','f-telj:telj','f-dirj:dirj','f-barj:barj','f-ciuj:ciuj','f-depj:depj'].forEach(p=>{ const [fid,iid]=p.split(':'); if(!req(fid,iid)) ok=false; }); }
-  if(envioDif){ ['f-env-nom:env-nom','f-env-tel:env-tel','f-env-dir:env-dir','f-env-bar:env-bar','f-env-ciu:env-ciu','f-env-dep:env-dep'].forEach(p=>{ const [fid,iid]=p.split(':'); if(!req(fid,iid)) ok=false; }); }
-  if(!ok) return;
+  let camposFallidos=[];
+  function reqDebug(fid,iid){
+    const f=document.getElementById(fid); const el=document.getElementById(iid); const v=el?el.value.trim():'';
+    if(!f) return true;
+    if(!v){ f.classList.add('ferr'); f.querySelector('.errmsg').style.display='block'; camposFallidos.push(iid); return false; }
+    f.classList.remove('ferr'); f.querySelector('.errmsg').style.display='none'; return true;
+  }
+  if(tipo==='nat'){ ['f-ced:ced','f-nom:nom','f-tel:tel','f-dir:dir','f-bar:bar','f-ciu:ciu','f-dep:dep'].forEach(p=>{ const [fid,iid]=p.split(':'); if(!reqDebug(fid,iid)) ok=false; }); }
+  else { ['f-rut:rut','f-rsoc:rsoc','f-rec:rec','f-telj:telj','f-dirj:dirj','f-barj:barj','f-ciuj:ciuj','f-depj:depj'].forEach(p=>{ const [fid,iid]=p.split(':'); if(!reqDebug(fid,iid)) ok=false; }); }
+  if(envioDif){ ['f-env-nom:env-nom','f-env-tel:env-tel','f-env-dir:env-dir','f-env-bar:env-bar','f-env-ciu:env-ciu','f-env-dep:env-dep'].forEach(p=>{ const [fid,iid]=p.split(':'); if(!reqDebug(fid,iid)) ok=false; }); }
+  if(!ok){
+    const err=document.getElementById('errbanner2');
+    if(err){ err.style.display='block'; err.textContent='Completa estos campos: '+camposFallidos.join(', '); }
+    return;
+  }
   guardarCliente(); buildResumen(); goStep(3);
 }
 
