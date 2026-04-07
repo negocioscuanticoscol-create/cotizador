@@ -144,7 +144,15 @@ a{text-decoration:none;color:inherit}
 .tipo-card .tsub{font-size:10px;color:var(--t3);margin-top:2px}
 .fbox{background:var(--gl);border:1px solid rgba(45,158,95,.25);border-radius:var(--r);padding:11px 14px;margin-bottom:13px;font-size:12px;color:var(--green);line-height:1.6}
 
-.toggle-envio{margin:10px 0 4px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color .15s}
+.transp-label{font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px;margin-top:14px;display:block}
+.transp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+@media(max-width:400px){.transp-grid{grid-template-columns:1fr}}
+.transp-card{border:2px solid var(--bd);border-radius:var(--r);padding:12px 10px;text-align:center;cursor:pointer;transition:all .15s;background:white}
+.transp-card.tsel{border-color:var(--gm);background:var(--gl)}
+.transp-card .tc-icon{font-size:22px;margin-bottom:5px}
+.transp-card .tc-title{font-size:12px;font-weight:700;color:var(--t);margin-bottom:3px}
+.transp-card.tsel .tc-title{color:var(--green)}
+.transp-card .tc-desc{font-size:10px;color:var(--t3);line-height:1.4}
 .toggle-envio.active{border-color:var(--gm);background:var(--gl)}
 .te-label{font-size:13px;font-weight:600;color:var(--t)}
 .te-sub{font-size:11px;color:var(--t3);margin-top:2px}
@@ -319,6 +327,24 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
       <span style="font-size:16px">📦</span>
       <span><strong>Entrega en la misma dirección de facturación</strong> — si necesitas enviar a otro lugar actívalo abajo.</span>
     </div>
+    <span class="transp-label">🚚 Tipo de transporte *</span>
+    <div class="transp-grid">
+      <div class="transp-card tsel" id="tr-incluido" onclick="setTransporte('incluido')">
+        <div class="tc-icon">📦</div>
+        <div class="tc-title">Incluido</div>
+        <div class="tc-desc">Sale en esta factura — flete calculado</div>
+      </div>
+      <div class="transp-card" id="tr-cobro" onclick="setTransporte('cobro')">
+        <div class="tc-icon">💰</div>
+        <div class="tc-title">Al cobro</div>
+        <div class="tc-desc">La transportadora cobra en la entrega</div>
+      </div>
+      <div class="transp-card" id="tr-propio" onclick="setTransporte('propio')">
+        <div class="tc-icon">🚛</div>
+        <div class="tc-title">Transporte propio</div>
+        <div class="tc-desc">Flete $0 — recoge el cliente</div>
+      </div>
+    </div>
     <div class="toggle-envio" id="toggle-envio" onclick="toggleEnvioDif()">
       <div><div class="te-label">Enviar a dirección diferente</div><div class="te-sub" id="envio-sub">Toca para ingresar otra dirección de entrega</div></div>
       <div class="te-sw" id="te-sw"></div>
@@ -440,7 +466,21 @@ const KIT_COMISION = 8000;
 const LISTA_NAMES = ['L1 Muestras','L2 Pyme','L3 Mayorista','L4 Distribuidor','L5 Convenio'];
 const allProds = () => [...CAT.fp, ...CAT.pm];
 
-let tipo = 'nat', envioDif = false, pedidoMuestras = false;
+let tipo = 'nat', envioDif = false, pedidoMuestras = false, tipoTransporte = 'incluido';
+
+function setTransporte(t){
+  tipoTransporte = t;
+  ['incluido','cobro','propio'].forEach(x=>{
+    const el = document.getElementById('tr-'+x);
+    if(el) el.classList.toggle('tsel', x===t);
+  });
+}
+
+function getFleteDisplay(){
+  if(tipoTransporte==='cobro')  return { monto:0, label:'Al cobro — transportadora cobra en entrega' };
+  if(tipoTransporte==='propio') return { monto:0, label:'Transporte propio' };
+  return null; // incluido = cálculo normal
+}
 let inventory = {};
 
 function getKitPrecio(){
@@ -682,7 +722,8 @@ function buildResumen(){
   document.getElementById('sum-items').innerHTML=itemsHTML||'<div class="srow"><div class="srl" style="color:var(--t3)">Solo kit de muestras</div></div>';
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
-  const flete=pedidoMuestras && totalUds===0?0:calcFlete(sel);
+  const fleteDisplay = getFleteDisplay();
+  const flete = fleteDisplay ? 0 : (pedidoMuestras && totalUds===0 ? 0 : calcFlete(sel));
   const totalPacas=sel.reduce((a,s)=>a+Math.floor(s.qty/s.prod.pk),0);
   const residuoUds=sel.reduce((a,s)=>a+(s.qty%s.prod.pk),0);
   const cajasResiduo=Math.ceil(residuoUds/200);
@@ -690,8 +731,8 @@ function buildResumen(){
   const grand=subBase+iva+flete+(pedidoMuestras?getKitPrecio():0);
   document.getElementById('s-sub').textContent=fmt(subBase);
   document.getElementById('s-iva').textContent=fmt(iva);
-  document.getElementById('s-flete').textContent=fmt(flete);
-  const cajasLabel=totalPacas>0?(totalPacas+` paca${totalPacas>1?'s':''}${cajasResiduo>0?' + '+cajasResiduo+' caja resid.':''}`):cajas?`(${cajas} caja${cajas>1?'s':''})`:'' ;
+  document.getElementById('s-flete').textContent= fleteDisplay ? (fleteDisplay.label) : fmt(flete);
+  const cajasLabel=!fleteDisplay&&totalPacas>0?(totalPacas+` paca${totalPacas>1?'s':''}${cajasResiduo>0?' + '+cajasResiduo+' caja resid.':''}`):!fleteDisplay&&cajas?`(${cajas} caja${cajas>1?'s':''})`:'' ;
   document.getElementById('s-cajas').textContent=cajasLabel?`(${cajasLabel})`:'';
   document.getElementById('s-total').textContent=fmt(grand);
   const envio=getEnvio(); const contacto=getContacto(); const empresa=getEmpresa(); const tel=getTel();
@@ -701,6 +742,7 @@ function buildResumen(){
     `<div class="srow"><div class="srl">Dirección de entrega<small>Barrio: ${envio.barrio||'—'}</small></div><div class="srr" style="text-align:right;max-width:60%">${envio.dir}<small>${envio.ciudad}</small></div></div>`+
     (envioDif?`<div class="srow"><div class="srl" style="color:var(--green);font-size:11px">⚠ Envío a dirección diferente al titular</div><div class="srr"></div></div>`:'')+
     (g('ali')?`<div class="srow"><div class="srl">¿Qué envasa?</div><div class="srr">${g('ali')}</div></div>`:'')+
+    `<div class="srow"><div class="srl">Transporte</div><div class="srr">${tipoTransporte==='incluido'?'📦 Incluido en factura':tipoTransporte==='cobro'?'💰 Al cobro':' 🚛 Transporte propio'}</div></div>`+
     (g('notas')?`<div class="srow"><div class="srl">Notas</div><div class="srr" style="text-align:right;max-width:60%">${g('notas')}</div></div>`:'');
   document.getElementById('acuerdo-section').style.display='block';
   document.getElementById('confirmado-box').style.display='none';
@@ -729,8 +771,10 @@ function notificarJose(){
   sel.forEach(s=>{ subBase+=s.qty*s.prod.t[listaActiva]; });
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
-  const flete=pedidoMuestras && sel.length===0 ? 0 : calcFlete(sel);
+  const fleteDisp = getFleteDisplay();
+  const flete = fleteDisp ? 0 : (pedidoMuestras && sel.length===0 ? 0 : calcFlete(sel));
   const grand=subBase+iva+flete+(pedidoMuestras?getKitPrecio():0);
+  const fleteStr = fleteDisp ? fleteDisp.label : fmt(flete);
   const comision=calcComision(sel);
   let msg=`🛒 NUEVO PEDIDO CONFIRMADO · ${folio}\n━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
   msg+=`Empresa: ${empresa}\nContacto: ${contacto} · ${tel}\n`;
@@ -738,7 +782,7 @@ function notificarJose(){
   msg+=`Entrega: ${envio.dir}, ${envio.barrio?'Barrio: '+envio.barrio+', ':''}${envio.ciudad}\n\n`;
   sel.forEach(s=>{ const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP'; msg+=`▸ ${group} ${s.prod.v} (${s.color==='blanco'?'Blanco':'Transparente'}): ${fmtN(s.qty)} uds\n`; });
   if(pedidoMuestras) msg+=`▸ Kit de muestras · ${fmt(getKitPrecio())}\n`;
-  msg+=`\nTOTAL: ${fmt(grand)}\nComisión estimada: ${fmt(comision)}\n\n✅ El cliente aceptó la liquidación.\nEnvía las formas de pago.`;
+  msg+=`\nFlete: ${fleteStr}\nTOTAL: ${fmt(grand)}\nComisión estimada: ${fmt(comision)}\nTransporte: ${tipoTransporte==='incluido'?'Incluido en factura':tipoTransporte==='cobro'?'Al cobro':'Transporte propio'}\n\n✅ El cliente aceptó la liquidación.\nEnvía las formas de pago.`;
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
 }
 
@@ -759,8 +803,8 @@ async function registrarEnSheets(){
   const productos=sel.map(s=>{ const precio=s.prod.t[listaActiva]; const subtotal=s.qty*precio; subBase+=subtotal; const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP'; return { ref:group+' '+s.prod.v, color:s.color==='blanco'?'Blanco':'Transparente', qty:s.qty, precio, subtotal }; });
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
-  const flete=pedidoMuestras && totalUds===0 ? 0 : calcFlete(sel);
-  const grand=subBase+iva+flete+(pedidoMuestras?getKitPrecio():0);
+  const fleteCalc = getFleteDisplay() ? 0 : (pedidoMuestras && totalUds===0 ? 0 : calcFlete(sel));
+  const grand=subBase+iva+fleteCalc+(pedidoMuestras?getKitPrecio():0);
   const envio=getEnvio();
   const folio=document.getElementById('folio-display').textContent;
   const now=new Date();
@@ -782,7 +826,8 @@ async function registrarEnSheets(){
     productos: JSON.stringify(productos), total_uds: totalUds,
     subtotal_sin_iva: Math.round(subBase),
     iva: Math.round(iva),
-    flete: Math.round(flete),
+    flete: Math.round(fleteCalc),
+    tipo_transporte: tipoTransporte,
     total: Math.round(grand),
     comision: Math.round(calcComision(sel)),
     lista_idx: listaActiva, lista_nombre: LISTA_NAMES[listaActiva],
@@ -837,6 +882,7 @@ function resetAll(){
   document.getElementById('errbanner').style.display='none';
   if(envioDif) toggleEnvioDif();
   if(pedidoMuestras) toggleMuestras();
+  setTransporte('incluido');
   if(promoOn){
     promoOn=false; promoOpen=false; listaActiva=0;
     const pb=document.getElementById('promobox'); pb.classList.remove('unlocked','open');
