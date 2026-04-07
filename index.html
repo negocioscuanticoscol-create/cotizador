@@ -484,6 +484,10 @@ function getFleteDisplay(){
 }
 let inventory = {};
 
+function fmt(n){ return '$\u202f'+Math.round(n).toLocaleString('es-CO',{useGrouping:true})+'\u202fCOP'; }
+function fmtN(n){ return Math.round(n).toLocaleString('es-CO'); }
+function g(id){ const e=document.getElementById(id); return e?e.value.trim():''; }
+
 function getKitPrecio(){
   if(promoOn){
     const code=document.getElementById('pinp').value.trim().toUpperCase();
@@ -491,8 +495,6 @@ function getKitPrecio(){
   }
   return KIT_PRECIO;
 }
-function fmtN(n){ return Math.round(n).toLocaleString('es-CO'); }
-function g(id){ const e=document.getElementById(id); return e?e.value.trim():''; }
 function genFolio(){
   const n=new Date();
   return 'SP-'+n.getFullYear()+String(n.getMonth()+1).padStart(2,'0')+String(n.getDate()).padStart(2,'0')+'-'+String(n.getHours()).padStart(2,'0')+String(n.getMinutes()).padStart(2,'0');
