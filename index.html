@@ -502,13 +502,17 @@ function genFolio(){
 function calcFlete(selItems){
   if(!selItems || selItems.length===0) return 36800;
   let totalFlete=0;
+  let totalResiduoUds=0;
   selItems.forEach(s=>{
     const pkSize=s.prod.pk;
     const pacasCompletas=Math.floor(s.qty/pkSize);
     const residuo=s.qty % pkSize;
-    const cajasResiduo=Math.ceil(residuo/200);
-    totalFlete += pacasCompletas*79000 + cajasResiduo*36800;
+    totalFlete += pacasCompletas*79000;
+    totalResiduoUds += residuo;
   });
+  // Consolidar todos los residuos en cajas de 200 uds
+  const cajasResiduo=Math.ceil(totalResiduoUds/200);
+  totalFlete += cajasResiduo*36800;
   return Math.max(36800, totalFlete);
 }
 function toggleAli(el){
