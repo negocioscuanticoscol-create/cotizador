@@ -537,7 +537,7 @@ async function loadInventory(){
       if(cols.length<2) return;
       const key=cols[0].trim().toLowerCase();
       const disp=cols[1].trim().toUpperCase()==='SI';
-      const stock=cols.length>=3?(parseInt(cols[2].trim())||0):(disp?-1:0);
+      const stock=cols.length>=3&&cols[2].trim()!==''?parseInt(cols[2].trim()):(disp?-1:0);
       inventory[key]=disp?stock:0;
     });
     updateAllBadges();
