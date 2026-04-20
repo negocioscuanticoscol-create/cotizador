@@ -530,7 +530,7 @@ function updateAli(){
 
 async function loadInventory(){
   try{
-    const r=await fetch(CONFIG.sheet_inventario);
+    const r=await fetch(CONFIG.sheet_inventario+'&t='+Date.now());
     const txt=await r.text();
     txt.trim().split('\n').slice(1).forEach(row=>{
       const cols=row.split(',');
