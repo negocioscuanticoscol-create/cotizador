@@ -91,7 +91,8 @@ a{text-decoration:none;color:inherit}
 .pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:transparent;transition:background .18s}
 .pc.sel{border-color:var(--gm);background:var(--gl)}
 .pc.sel::before{background:var(--gm)}
-.pvol{font-size:18px;font-weight:800;color:var(--dark);line-height:1;margin-bottom:2px}
+.pvol{font-size:18px;font-weight:800;color:var(--dark);line-height:1;margin-bottom:0}
+.poz{font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace;margin-bottom:4px;font-weight:500}
 .pline{font-size:10px;color:var(--t2);margin-bottom:2px;font-weight:500}
 .pdims{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);margin-bottom:5px}
 .ppaca{font-size:11px;color:var(--green);font-weight:700;margin-bottom:2px}
@@ -153,6 +154,7 @@ a{text-decoration:none;color:inherit}
 .transp-card .tc-title{font-size:12px;font-weight:700;color:var(--t);margin-bottom:3px}
 .transp-card.tsel .tc-title{color:var(--green)}
 .transp-card .tc-desc{font-size:10px;color:var(--t3);line-height:1.4}
+.toggle-envio{display:flex;align-items:center;justify-content:space-between;background:white;border:1.5px solid var(--bd);border-radius:var(--r);padding:12px 14px;cursor:pointer;margin-bottom:10px;transition:all .15s}
 .toggle-envio.active{border-color:var(--gm);background:var(--gl)}
 .te-label{font-size:13px;font-weight:600;color:var(--t)}
 .te-sub{font-size:11px;color:var(--t3);margin-top:2px}
@@ -218,7 +220,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
 </div>
 
 <div class="hero">
-  <div class="htag">// COTIZADOR OFICIAL 2026 · v9</div>
+  <div class="htag">// COTIZADOR OFICIAL 2026 · v10</div>
   <h1>Cotiza tus<br><em>envases Flexipack</em></h1>
   <p>Precios reales con IVA incluido. Flete calculado. Envíos a todo Colombia en 2-3 días hábiles.</p>
   <div class="hbadges">
@@ -275,6 +277,8 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
   <div class="pgrid" id="grid-fp"></div>
   <div class="slabel">// PetMulti — PET transparente</div>
   <div class="pgrid" id="grid-pm"></div>
+  <div class="slabel">// Nuevas referencias</div>
+  <div class="pgrid" id="grid-nr"></div>
   <div id="errbanner">Selecciona al menos un producto con mínimo 100 unidades, o el kit de muestras.</div>
   <div class="bwrap" style="padding-top:4px">
     <button class="btn btn-p" onclick="goStep2()">Continuar con mis datos →</button>
@@ -445,19 +449,28 @@ let promoOn = false, promoOpen = false, listaActiva = 0;
 
 const CAT = {
   fp: [
-    {id:'f115',  v:'115 ml', d:'Ø67×52',   pk:1890, col:['transparente'],                t:[592,547,507,474,444]},
-    {id:'f155',  v:'155 ml', d:'Ø67×69',   pk:1800, col:['transparente','blanco'],       t:[593,548,508,475,445]},
-    {id:'f180',  v:'180 ml', d:'Ø95×45',   pk:1056, col:['transparente','blanco'],       t:[851,786,729,681,638]},
-    {id:'f240',  v:'240 ml', d:'Ø95×54',    pk:480, col:['transparente','blanco'],       t:[802,741,687,642,601]},
-    {id:'f365',  v:'365 ml', d:'Ø97×82',    pk:600, col:['blanco','transparente'],       t:[1069,987,916,855,801]},
-    {id:'f520',  v:'520 ml', d:'Ø95×116',   pk:575, col:['transparente','blanco'],       t:[1190,1099,1019,952,892]},
-    {id:'f565',  v:'565 ml', d:'Ø118×80',   pk:435, col:['transparente','blanco'],       t:[1255,1158,1075,1003,940]},
-    {id:'f1001', v:'1.000 ml',d:'Ø122×126', pk:308, col:['transparente','blanco'],       t:[1847,1706,1583,1478,1385]},
-    {id:'f1180', v:'1.180 ml',d:'Ø133×131', pk:242, col:['transparente','blanco'],       t:[2626,2425,2251,2101,1969]}
+    {id:'f115',  oz:'4 oz', v:'115 ml', d:'Ø67×52',   pk:1890, col:['transparente'],                t:[592,547,507,474,444]},
+    {id:'f155',  oz:'5 oz', v:'155 ml', d:'Ø67×69',   pk:1800, col:['transparente','blanco'],       t:[593,548,508,475,445]},
+    {id:'f180',  oz:'6 oz', v:'180 ml', d:'Ø95×45',   pk:1056, col:['transparente','blanco'],       t:[851,786,729,681,638]},
+    {id:'f240',  oz:'8 oz', v:'240 ml', d:'Ø95×54',    pk:480, col:['transparente','blanco'],       t:[802,741,687,642,601]},
+    {id:'f365',  oz:'12.5 oz', v:'365 ml', d:'Ø97×82',    pk:600, col:['blanco','transparente'],       t:[1069,987,916,855,801]},
+    {id:'f520',  oz:'17.5 oz', v:'520 ml', d:'Ø95×116',   pk:575, col:['transparente','blanco'],       t:[1190,1099,1019,952,892]},
+    {id:'f565',  oz:'19 oz', v:'565 ml', d:'Ø118×80',   pk:435, col:['transparente','blanco'],       t:[1255,1158,1075,1003,940]},
+    {id:'f1001', oz:'34 oz', v:'1.000 ml',d:'Ø122×126', pk:308, col:['transparente','blanco'],       t:[1847,1706,1583,1478,1385]},
+    {id:'f1180', oz:'40 oz', v:'1.180 ml',d:'Ø133×131', pk:242, col:['transparente','blanco'],       t:[2626,2425,2251,2101,1969]}
   ],
   pm: [
-    {id:'pm330',  v:'330 ml PET',   d:'Ø66.5×144', pk:2717, col:['transparente'],       t:[1066,984,913,852,799]},
-    {id:'pm1000', v:'1.000 ml PET', d:'Ø66.5×248', pk:1008, col:['transparente'],       t:[1641,1515,1406,1313,1231]}
+    {id:'pm330',  oz:'11 oz', v:'330 ml PET',   d:'Ø66.5×144', pk:2717, col:['transparente'],       t:[1066,984,913,852,799]},
+    {id:'pm1000', oz:'34 oz', v:'1.000 ml PET', d:'Ø66.5×248', pk:1008, col:['transparente'],       t:[1641,1515,1406,1313,1231]}
+  ],
+  nr: [
+    {id:'f235',  oz:'8 oz', v:'235 ml',               d:'Ø95×53',       pk:624, col:['transparente'],          t:[879,811,753,703,659]},
+    {id:'f275',  oz:'9.5 oz', v:'275 ml',               d:'Ø95×72',       pk:720, col:['transparente','blanco'],  t:[931,860,798,745,698]},
+    {id:'f285',  oz:'9.5 oz', v:'285 ml',               d:'Ø120×94×40',   pk:660, col:['blanco'],                 t:[951,878,815,760,713]},
+    {id:'f400',  oz:'13.5 oz', v:'400 ml',               d:'Ø120×94×52',   pk:288, col:['transparente'],           t:[1028,949,881,822,771]},
+    {id:'f801',  oz:'27 oz', v:'801 ml',               d:'Ø125×94×126',  pk:414, col:['transparente'],           t:[1658,1530,1420,1326,1243]},
+    {id:'f1500c',oz:'50.5 oz', v:'1.5 Lt Cubo s/asa',   d:'5×146 mm',     pk:120, col:['transparente'],           t:[2730,2534,2365,2217,2081]},
+    {id:'f192',  v:'ITF 192×128mm Freeze', d:'192×128 mm',   pk:200, col:['transparente'],           t:[1988,1835,1703,1591,1491]}
   ]
 };
 
@@ -465,7 +478,7 @@ const KIT_PRECIO = 60000;
 const KIT_L2     = 60000;
 const KIT_COMISION = 8000;
 const LISTA_NAMES = ['L1 Muestras','L2 Pyme','L3 Mayorista','L4 Distribuidor','L5 Convenio'];
-const allProds = () => [...CAT.fp, ...CAT.pm];
+const allProds = () => [...CAT.fp, ...CAT.pm, ...CAT.nr];
 
 let tipo = 'nat', envioDif = false, pedidoMuestras = false, tipoTransporte = 'incluido';
 
@@ -480,7 +493,7 @@ function setTransporte(t){
 function getFleteDisplay(){
   if(tipoTransporte==='cobro')  return { monto:0, label:'Al cobro — transportadora cobra en entrega' };
   if(tipoTransporte==='propio') return { monto:0, label:'Transporte propio' };
-  return null; // incluido = cálculo normal
+  return null;
 }
 let inventory = {};
 
@@ -500,20 +513,20 @@ function genFolio(){
   return 'SP-'+n.getFullYear()+String(n.getMonth()+1).padStart(2,'0')+String(n.getDate()).padStart(2,'0')+'-'+String(n.getHours()).padStart(2,'0')+String(n.getMinutes()).padStart(2,'0');
 }
 function calcFlete(selItems){
-  if(!selItems || selItems.length===0) return 36800;
+  if(!selItems || selItems.length===0) return 36500;
   let totalFlete=0;
   let totalResiduoUds=0;
   selItems.forEach(s=>{
     const pkSize=s.prod.pk;
     const pacasCompletas=Math.floor(s.qty/pkSize);
     const residuo=s.qty % pkSize;
-    totalFlete += pacasCompletas*79000;
+    totalFlete += pacasCompletas*65000;   // $65.000 por paca completa
     totalResiduoUds += residuo;
   });
-  // Consolidar todos los residuos en cajas de 200 uds
+  // Fuera de paca: $36.500 por cada 200 uds o fracción
   const cajasResiduo=Math.ceil(totalResiduoUds/200);
-  totalFlete += cajasResiduo*36800;
-  return Math.max(36800, totalFlete);
+  totalFlete += cajasResiduo*36500;
+  return Math.max(36500, totalFlete);
 }
 function toggleAli(el){
   el.classList.toggle('on');
@@ -574,7 +587,7 @@ function updateBadge(id,color){
 
 function buildGrid(group, containerId){
   const c=document.getElementById(containerId);
-  const label=group==='pm'?'PetMulti PET':'Flexipack PP';
+  const label=group==='pm'?'PetMulti PET':group==='nr'?'Nuevas Referencias':'Flexipack PP';
   c.innerHTML=CAT[group].map(prod=>{
     const colorRows=prod.col.map(color=>{
       const cid=prod.id+'_'+color;
@@ -594,6 +607,7 @@ function buildGrid(group, containerId){
     }).join('');
     return `<div class="pc" id="card-${prod.id}">
       <div class="pvol">${prod.v}</div>
+      ${prod.oz?`<div class="poz">≈ ${prod.oz}</div>`:''}
       <div class="pline">${label}</div>
       <div class="pdims">${prod.d} mm</div>
       <div class="ppaca">📦 Paca: ${fmtN(prod.pk)} uds</div>
@@ -653,7 +667,7 @@ function goStep2(){
     const inp=document.getElementById('qty-'+p.id+'_'+color);
     const qty=inp?(parseInt(inp.value)||0):0;
     const stock=getStock(p.id,color);
-    const group=CAT.pm.some(x=>x.id===p.id)?'PetMulti PET':'Flexipack PP';
+    const group=CAT.pm.some(x=>x.id===p.id)?'PetMulti PET':CAT.nr.some(x=>x.id===p.id)?'Nueva Ref':'Flexipack PP';
     const clabel=color==='blanco'?'Blanco':'Transparente';
     if(qty>0 && qty<100) incompletas.push(`${group} ${p.v} ${clabel} — pediste ${qty} uds, mínimo 100`);
     else if(stock>0 && qty>stock) incompletas.push(`${group} ${p.v} ${clabel} — solo hay ${fmtN(stock)} disponibles`);
@@ -730,7 +744,7 @@ function buildResumen(){
   document.getElementById('folio-display').textContent=folio;
   const IVA=0.19; let subBase=0;
   let itemsHTML=sel.map(s=>{
-    const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP';
+    const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':CAT.nr.some(p=>p.id===s.prod.id)?'Nueva Ref':'Flexipack PP';
     const clabel=s.color==='blanco'?'Blanco':'Transparente';
     const precio=s.prod.t[listaActiva]; const subtotal=s.qty*precio; subBase+=subtotal;
     const listaLabel=promoOn?'precio especial':LISTA_NAMES[listaActiva];
@@ -798,7 +812,7 @@ function notificarJose(){
   msg+=`Empresa: ${empresa}\nContacto: ${contacto} · ${tel}\n`;
   if(tipo==='nat') msg+=`Cédula: ${g('ced')}\n`; else msg+=`NIT: ${g('rut')}\n`;
   msg+=`Entrega: ${envio.dir}, ${envio.barrio?'Barrio: '+envio.barrio+', ':''}${envio.ciudad}\n\n`;
-  sel.forEach(s=>{ const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP'; msg+=`▸ ${group} ${s.prod.v} (${s.color==='blanco'?'Blanco':'Transparente'}): ${fmtN(s.qty)} uds\n`; });
+  sel.forEach(s=>{ const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':CAT.nr.some(p=>p.id===s.prod.id)?'Nueva Ref':'Flexipack PP'; msg+=`▸ ${group} ${s.prod.v} (${s.color==='blanco'?'Blanco':'Transparente'}): ${fmtN(s.qty)} uds\n`; });
   if(pedidoMuestras) msg+=`▸ Kit de muestras · ${fmt(getKitPrecio())}\n`;
   msg+=`\nFlete: ${fleteStr}\nTOTAL: ${fmt(grand)}\nComisión estimada: ${fmt(comision)}\nTransporte: ${tipoTransporte==='incluido'?'Incluido en factura':tipoTransporte==='cobro'?'Al cobro':'Transporte propio'}\n\n✅ El cliente aceptó la liquidación.\nEnvía las formas de pago.`;
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
@@ -818,7 +832,7 @@ function calcComision(sel){
 
 async function registrarEnSheets(){
   const sel=getSel(); const IVA=0.19; let subBase=0;
-  const productos=sel.map(s=>{ const precio=s.prod.t[listaActiva]; const subtotal=s.qty*precio; subBase+=subtotal; const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':'Flexipack PP'; return { ref:group+' '+s.prod.v, color:s.color==='blanco'?'Blanco':'Transparente', qty:s.qty, precio, subtotal }; });
+  const productos=sel.map(s=>{ const precio=s.prod.t[listaActiva]; const subtotal=s.qty*precio; subBase+=subtotal; const group=CAT.pm.some(p=>p.id===s.prod.id)?'PetMulti PET':CAT.nr.some(p=>p.id===s.prod.id)?'Nueva Ref':'Flexipack PP'; return { ref:group+' '+s.prod.v, color:s.color==='blanco'?'Blanco':'Transparente', qty:s.qty, precio, subtotal }; });
   const iva=Math.round(subBase*IVA);
   const totalUds=sel.reduce((a,s)=>a+s.qty,0);
   const fleteCalc = getFleteDisplay() ? 0 : (pedidoMuestras && totalUds===0 ? 0 : calcFlete(sel));
@@ -881,7 +895,6 @@ function applyPromo(){
     document.getElementById('picon').textContent='✓';
     document.getElementById('ptitle').textContent='Código aplicado';
     document.getElementById('psub').textContent='Precio especial activo en tu solicitud';
-    // Actualizar badge kit
     const kitBadge = document.getElementById('kit-badge');
     if(kitBadge) kitBadge.textContent = PROMOS[code].kitGratis ? '¡GRATIS!' : '$60.000';
     if(PROMOS[code].kitGratis && kitBadge) kitBadge.style.background='var(--green)';
@@ -948,6 +961,7 @@ async function enviarAMake(){
 
 buildGrid('fp','grid-fp');
 buildGrid('pm','grid-pm');
+buildGrid('nr','grid-nr');
 loadInventory();
 </script>
 </body>
