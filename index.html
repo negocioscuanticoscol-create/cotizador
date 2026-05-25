@@ -220,7 +220,7 @@ label.chk-on{background:var(--gl)!important;border-color:var(--gm)!important;col
 </div>
 
 <div class="hero">
-  <div class="htag">// COTIZADOR OFICIAL 2026 · v10</div>
+  <div class="htag">// COTIZADOR OFICIAL 2026 · v11</div>
   <h1>Cotiza tus<br><em>envases Flexipack</em></h1>
   <p>Precios reales con IVA incluido. Flete calculado. Envíos a todo Colombia en 2-3 días hábiles.</p>
   <div class="hbadges">
@@ -520,7 +520,9 @@ function calcFlete(selItems){
     const pkSize=s.prod.pk;
     const pacasCompletas=Math.floor(s.qty/pkSize);
     const residuo=s.qty % pkSize;
-    totalFlete += pacasCompletas*65000;   // $65.000 por paca completa
+    // PetMulti (pm) = $140.000/paca | Flexipack y nuevas = $65.000/paca
+    const esPM = s.prod.id.startsWith('pm');
+    totalFlete += pacasCompletas*(esPM ? 140000 : 65000);
     totalResiduoUds += residuo;
   });
   // Fuera de paca: $36.500 por cada 200 uds o fracción
